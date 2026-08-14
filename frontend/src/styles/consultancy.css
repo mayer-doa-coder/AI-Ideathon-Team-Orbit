@@ -1,0 +1,356 @@
+.consultancy-page {
+  min-height: 100vh;
+  padding: 40px 20px 64px;
+  background: linear-gradient(180deg, #f5f6f4 0%, #eef1ea 100%);
+}
+
+.consultancy-container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.consultancy-header {
+  margin-bottom: 28px;
+}
+
+.consultancy-back-link {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--text);
+  text-decoration: none;
+  margin-bottom: 16px;
+}
+
+.consultancy-header h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.consultancy-subtitle {
+  color: var(--text);
+  font-size: 13.5px;
+  max-width: 640px;
+}
+
+.consultancy-loading,
+.consultancy-empty {
+  color: var(--text);
+  font-style: italic;
+  font-size: 13px;
+}
+
+/* ---- Premium (unlocked) layout ---- */
+.consultancy-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .consultancy-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.consultancy-panel {
+  background-color: var(--white);
+  border-radius: 14px;
+  box-shadow: var(--box-shadow);
+  padding: 24px 26px;
+}
+
+.consultancy-panel h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.consultancy-premium-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(17, 162, 27, 0.1);
+  color: var(--theme3);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-radius: 100px;
+  padding: 5px 12px;
+  margin-bottom: 14px;
+}
+
+.consultancy-premium-badge span {
+  color: var(--text);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.8;
+}
+
+.consultancy-label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--header);
+  margin: 14px 0 8px;
+}
+
+.expert-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.expert-grid.preview {
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 560px) {
+  .expert-grid.preview {
+    grid-template-columns: 1fr;
+  }
+}
+
+.expert-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: var(--bg);
+  padding: 12px 14px;
+  transition: 0.2s ease-in-out;
+  width: 100%;
+}
+
+.expert-card.selected {
+  border-color: var(--theme3);
+  background-color: rgba(17, 162, 27, 0.06);
+  box-shadow: 0 0 0 1px var(--theme3);
+}
+
+.expert-card.locked {
+  cursor: default;
+  opacity: 0.9;
+}
+
+.expert-avatar {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 50%;
+  background-color: var(--theme3);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.expert-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.expert-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--header);
+}
+
+.expert-specialty {
+  font-size: 12.5px;
+  color: var(--theme3);
+  font-weight: 600;
+}
+
+.expert-credentials {
+  font-size: 11.5px;
+  color: var(--text);
+  opacity: 0.75;
+}
+
+.consultancy-ask textarea {
+  width: 100%;
+  resize: vertical;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  padding: 12px 14px;
+  font-size: 14px;
+  color: var(--header);
+  outline: none;
+}
+
+.consultancy-ask textarea:focus {
+  border-color: var(--theme3);
+}
+
+.consultancy-submit {
+  margin-top: 14px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--theme3);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 12px 24px;
+}
+
+.consultancy-submit:hover:not(:disabled) {
+  background-color: var(--header);
+}
+
+.consultancy-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.consultancy-error {
+  background-color: rgba(200, 67, 58, 0.1);
+  color: var(--theme);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 14px;
+}
+
+/* ---- Consultation thread ---- */
+.consultation-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-height: 620px;
+  overflow-y: auto;
+}
+
+.consultation-item {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: var(--bg);
+  padding: 14px 16px;
+}
+
+.consultation-question,
+.consultation-answer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.consultation-answer {
+  margin-top: 12px;
+  border-top: 1px dashed var(--border);
+  padding-top: 12px;
+}
+
+.consultation-role {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.consultation-role.expert {
+  color: var(--theme3);
+  opacity: 1;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 12.5px;
+}
+
+.consultation-question p,
+.consultation-answer p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--header);
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.consultation-meta {
+  display: block;
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--text);
+  opacity: 0.65;
+}
+
+/* ---- Locked state ---- */
+.consultancy-locked {
+  display: grid;
+  grid-template-columns: minmax(0, 380px) 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .consultancy-locked {
+    grid-template-columns: 1fr;
+  }
+}
+
+.consultancy-lock-card,
+.consultancy-preview {
+  background-color: var(--white);
+  border-radius: 14px;
+  box-shadow: var(--box-shadow);
+  padding: 28px 26px;
+}
+
+.consultancy-lock-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: rgba(17, 162, 27, 0.1);
+  color: var(--theme3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.consultancy-lock-card h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.consultancy-lock-card p {
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.consultancy-unlock-btn {
+  display: inline-block;
+  border-radius: 10px;
+  background-color: var(--theme3);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 12px 24px;
+  text-decoration: none;
+}
+
+.consultancy-unlock-btn:hover {
+  background-color: var(--header);
+}
+
+.consultancy-preview h3 {
+  font-size: 15px;
+  margin-bottom: 16px;
+}

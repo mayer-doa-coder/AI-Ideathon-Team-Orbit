@@ -1,0 +1,155 @@
+.cta-wrapper {
+    @include flex;
+    justify-content: space-between;
+    padding: 80px 75px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: -140px;
+    z-index: 999;
+
+     @include breakpoint (max-xxl) {
+        margin-bottom: 100px;
+    }
+
+    @include breakpoint (max-lg) {
+        margin-bottom: 80px;
+    }
+
+    .tomato {
+        position: absolute;
+        top: 0;
+        right: 360px;
+
+        img {
+            @include imgw;
+        }
+
+        @include breakpoint (max-xxl) {
+            display: none;
+        }
+    }
+
+    .cta-shape {
+        position: absolute;
+        right: 478px;
+        bottom: 25px;
+
+         @include breakpoint (max-xxl) {
+            display: none;
+        }
+    }
+
+    @include breakpoint (max-xxl) {
+        flex-wrap: wrap;
+        gap: 30px;
+        padding: 60px;
+    }
+
+    @include breakpoint (max-lg) {
+         padding: 50px;
+    }
+
+    @include breakpoint (max-md) {
+         padding: 40px;
+    }
+
+    @include breakpoint (max-sm) {
+         padding: 20px;
+    }
+
+    .cta-content {
+        max-width: 670px;
+        width: 100%;
+
+        h3 {
+            color: $white;
+            margin-bottom: 15px;
+        }
+
+         form {
+            max-width: 691px;
+            width: 100%;
+        }
+
+        .form-clt {
+            position: relative;
+
+            input {
+                width: 100%;
+                outline: none;
+                border: none;
+                background-color: $white;
+                color: rgba(80, 98, 74, 1);
+                line-height: 1;
+                padding: 25px 50px;
+                border-radius: 10px;
+                max-width: 691px;
+
+                @include breakpoint (max-xxs){
+                   padding: 25px 30px;
+                }
+
+                &::placeholder {
+                    color: rgba(80, 98, 74, 1);
+                }
+            }
+
+            i {
+                position: absolute;
+                left: 25px;
+                top: 28px;
+
+                @include breakpoint (max-xxs){
+                   left: 10px;
+                }
+            }
+
+            .theme-btn {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(47, 47, 47, 1);
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            
+                @include breakpoint (max-xxs){
+                   padding: 10px 20px 10px;
+                }
+            }
+        } 
+    }
+
+    .icon-item {
+        @include flex;
+        gap: 15px;
+
+        .icon {
+            width: 52px;
+            height: 52px;
+            line-height: 52px;
+            text-align: center;
+            background-color: $white;
+            border-radius: 100px;
+            color: rgba(200, 67, 58, 1);
+        }
+
+        h3 {
+            font-weight: 600;
+
+            a {
+                color: $white;
+            }
+        }
+    }
+}
+
+.cta-section {
+    position: relative;
+    z-index: 99999;
+
+    @include breakpoint (max-xxl) {
+        overflow: hidden;
+    }
+}

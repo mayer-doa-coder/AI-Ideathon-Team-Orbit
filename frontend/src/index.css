@@ -1,0 +1,58 @@
+:root {
+  --white: #fff;
+  --theme: #c8433a;
+  --theme2: #f5d83e;
+  --theme3: #11a21b;
+  --header: #2f2f2f;
+  --text: #50624a;
+  --border: rgba(47, 47, 47, 0.1);
+  --bg: #f5f6f4;
+  --bg2: #50624a;
+  --box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.13);
+
+  /* Noto Sans Bengali only ever renders for Bengali-script characters —
+     browsers fall back to it per-glyph, so Latin text still uses
+     Instrument Sans/Inter exactly as before; this just keeps Bangla text
+     (see context/LanguageContext.jsx) from rendering as tofu boxes. */
+  --heading-font: "Instrument Sans", "Noto Sans Bengali", sans-serif;
+  --body-font: "Inter", "Noto Sans Bengali", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--body-font);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading-font);
+  margin: 0;
+  color: var(--header);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  font-family: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}

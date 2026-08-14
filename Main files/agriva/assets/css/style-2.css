@@ -1,0 +1,17 @@
+:root {
+    
+    --body: #fff;
+    --black: #000;
+    --white: #fff;
+    --theme: #C8433A;
+    --theme2: #C8433A;
+    --theme3: #C8433A;
+    --header: #2F2F2F;
+    --text: #50624A;
+    --border: #02060A;
+    --bg: #F5F6F4;
+    --bg2: #50624A;
+    --bg3: #F5F6F4;
+    --box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.13);
+}
+

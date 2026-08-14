@@ -1,0 +1,17 @@
+venv/
+.venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+.env
+.env.example
+.git
+.gitignore
+.pytest_cache/
+README.md
+# TTS output (app/tools/voice.py) — generated at runtime, never something
+# to ship in the build context.
+generated_audio/
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/barc_handbook_of_agricultural_technology.pdf

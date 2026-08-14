@@ -1,0 +1,104 @@
+Season,Transplant,Growth,Harvest,'Products name','Crops Type','Normalized Max Temp','Normalized Min Temp','Normalized Min RH','Normalized Max RH',Cluster
+'Kharif 1',Mar,'Apr to Jul',Aug,'Aus Rice(Local: Broadcasted)',Cereals,0.833333,0.318182,0.615385,0.727273,A
+'Kharif 1',Mar,'Apr to Jun',Jul,'Aus Rice(HYV: Transplant)',Cereals,0.833333,0.318182,0.615385,0.727273,B
+'Kharif 1',Mar,'Apr to May',Jun,'Maize 2',Cereals,0.633333,0.681818,0.615385,0.727273,B
+'Kharif 1',Feb,'Mar to May',Jun,'Mungbean 2',Pulses,0.5,0.681818,0,0.727273,B
+'Kharif 1',Jul,'Aug to Oct',Oct,'Soybean 2','Oil Seeds',0.666667,0.454545,0.230769,0.636364,B
+'Kharif 1',May,'Jun to Sep',Oct,'Groundnut 2','Oil Seeds',0.666667,0.681818,0.923077,0.818182,B
+'Kharif 1',Mar,'Apr to Aug',Sep,'Ridge Gourd',Vegetables,0.666667,0.909091,1,0.818182,A
+'Kharif 1',Mar,'Apr to Aug',Sep,'Indian Spinach(Pui shakh)',Vegetables,0.166667,0.454545,0.846154,0.909091,A
+'Kharif 1',Mar,'Apr to Aug',Sep,'Kang Kong(Kolomi Shakh)',Vegetables,0.666667,0.681818,0.923077,1,A
+'Kharif 1',Jul,'Sep to Mar',Mar,'Egg plant',Vegetables,1,0.818182,0.461538,0.727273,A
+'Kharif 1',Jun,'Aug to Feb',Mar,'Hyacinth Bean',Vegetables,0.333333,0.545455,0.861538,0.890909,A
+'Kharif 1',Feb,'Mar to Jun',Jun,'Onion 2',Vegetables,0.5,0.681818,0.692308,0.545455,A
+'Kharif 1',Mar,'Apr to Aug',Sep,Jute(Capsularis),Fibre,0.833333,0.681818,0.769231,0.636364,B
+'Kharif 1',Apr,'May to Aug',Sep,Jute(Olitorius),Fibre,0.833333,0.681818,0.769231,0.636364,B
+'Kharif 1',Apr,'Jun to Aug',Aug,Jowar,Staple,0.566667,1,0.692308,0.545455,B
+'Kharif 1',Mar,'Apr to Jul',Jul,'Sunn Hemp 1','Oil Seeds',0.4,0.590909,0.307692,0.454545,B
+'Kharif 1',Apr,'May to Aug',Oct,'Cotton 1',Fibre,0.666667,0.681818,0.353846,0.563636,B
+'Kharif 1',Apr,'May to Dec',Dec,Turmeric,Vegetables,0.5,0.681818,0.384615,0.636364,B
+'Kharif 1',Jun,'Jul to Nov',Nov,Beans,Vegetables,0.233333,0.227273,0.615385,0.545455,A
+'Kharif 1',Apr,'May to Jun',Jun,'Ladys Finger',Vegetables,0.5,0.227273,0.846154,0.727273,B
+'Kharif 1',Apr,'May to Jul',Jul,Kakrol,Vegetables,0.5,0.681818,0.615385,0.727273,B
+'Kharif 1',Apr,'May to Jun',Jun,'Jhinga(Ribbed Gourd)',Vegetables,0.433333,0.590909,0.769231,0.818182,B
+'Kharif 1',Mar,'Apr to Jul',Jul,'Chal Kumra(White Gourd)',Vegetables,0.4,0.590909,0.692308,0.727273,A
+'Kharif 1',Apr,'May to Sep',Sep,'Mukhi Kachu(Taro)',Vegetables,0,0.136364,0.692308,0.818182,B
+'Kharif 1',Apr,'No need to do',Apr,'Litchi 1',Fruits,0.433333,0.045455,0.769231,0.727273,B
+'Kharif 1',Apr,'No need to do',Apr,'Mango 1',Fruits,0.7,1,0.461538,0.818182,B
+'Kharif 1',Apr,'No need to do',Apr,'Jackfruit 1',Fruits,1.066667,0.772727,0.769231,0.909091,B
+'Kharif 1',Apr,'No need to do',Jan,'Safeda(Sapota) 1',Fruits,0.766667,0.227273,0.615385,0.636364,B
+'Kharif 1',Apr,'No need to do',May,'Safeda(Sapota) 2',Fruits,0.766667,0.227273,0.615385,0.636364,B
+'Kharif 1',Apr,'No need to do',May,'Pomelo 1',Fruits,0.5,0.909091,0.769231,0.818182,B
+'Kharif 1',Apr,'No need to do','Throuout The year',Guava,Fruits,0.666667,0.818182,0.461538,0.727273,B
+'Kharif 1',Apr,'No need to do',Feb,'Date Palm',Fruits,0.666667,0.045455,0.615385,0.727273,B
+'Kharif 1',Apr,'No need to do','Throuout The year','Dalim(Pomegranate) 1',Fruits,0.766667,0,0.769231,0.909091,B
+'Kharif 1',Apr,'No need to do',Feb,'Ber 1',Fruits,0.6,0.590909,0.615385,0.727273,B
+Rabi,Nov,'Dec to Mar',Apr,'Boro(HYV: Transplant)',Cereals,0.833333,0.318182,0.615385,0.727273,C
+Rabi,Dec,'Jan  to  Mar',Apr,Wheat,Cereals,0.166667,0.477273,0.461538,0.272727,C
+Rabi,Dec,'Jan  to  Mar',Apr,'Maize 1',Cereals,0.4,0.409091,0.461538,0.454545,C
+Rabi,Sep,'Oct to Feb',Mar,'Mungbean 1',Pulses,0.5,0.681818,0,0.727273,A
+Rabi,Dec,'Jan to  Apr',May,'Soybean 1','Oil Seeds',0.333333,0.454545,0.153846,0.454545,C
+Rabi,Oct,'Nov to Mar',Mar,'Groundnut 1','Oil Seeds',0.666667,0.681818,0.923077,0.818182,A
+Rabi,Nov,'Dec to Jan',Feb,'Sesame 1','Oil Seeds',0.666667,1,0.307692,0.090909,C
+Rabi,Feb,'Mar to Jul',Aug,'Bitter Gourd',Vegetables,0.4,0.863636,1,0.818182,A
+Rabi,Feb,'Mar to Aug',Aug,'Snake Gourd',Vegetables,0.766667,0.909091,1,0.818182,A
+Rabi,Feb,'Apr to Jul',Aug,'Sweet Gourd',Vegetables,0.333333,0.590909,0,0.272727,A
+Rabi,Mar,'Apr to Aug',Sep,'Stem Amaranth(Danta Shakh)',Vegetables,0.566667,0.590909,0.846154,0.727273,A
+Rabi,Nov,'Jan to May',Jun,Orange,Fruits,0.5,0.454545,0.953846,0.727273,C
+Rabi,Jan,'Jan to Jan',Jan,Lemon,Fruits,0.333333,0.227273,0.615385,0.909091,B
+Rabi,Jan,'Jan to Jan',Jan,Banana,Fruits,0.666667,0.454545,0.846154,0.727273,B
+Rabi,Nov,'Dec to Feb',Mar,'Green Pea',Vegetables,0.233333,0.454545,0.923077,0.818182,A
+Rabi,Jan,'Feb to Aug',Sep,Okra,Vegetables,0.466667,0.681818,0.769231,0.909091,A
+Rabi,Oct,'Nov to Jan',Feb,'Onion 1',Vegetables,0.333333,0.681818,0.692308,0.545455,A
+Rabi,Nov,'Dec to Mar',Apr,'Sweet Potatoes',Vegetables,0.3,0.545455,0.769231,0.818182,C
+Rabi,Nov,'Dec to Mar',Mar,Kaong,Fruits,0.333333,0.227273,0.846154,0.909091,C
+Rabi,Nov,'Dec to Feb',Feb,Cheena,Fruits,0.333333,0.545455,0.307692,0.727273,C
+Rabi,Feb,'Mar to May',May,'Teel 1',Vegetables,0.5,0.681818,0.461538,0.727273,A
+Rabi,Dec,'Jan to May',May,Kakora,Vegetables,0.5,0.681818,0,0.181818,A
+'Kharif 2',Jun,'Jul to  Oct',Nov,'Aman Rice(Local: Transplant)',Cereals,0.833333,0.318182,0.615385,0.727273,A
+'Kharif 2',Sep,'Oct to Jan',Feb,Potato,Tubers,0.383333,0.454545,1,0.818182,A
+'Kharif 2',Oct,'Nov  to  Feb',Feb,Lentiles,Pulses,0.166667,0.227273,1,0.909091,A
+'Kharif 2',Nov,'Dec to Mar',Mar,Chickpea,Pulses,0.383333,0.454545,0.076923,0.727273,C
+'Kharif 2',Aug,'Sep to Oct',Nov,Blackgram,Pulses,0.666667,0.681818,0.076923,0,A
+'Kharif 2',Oct,'Nov  to  Jan',Feb,Mustard,'Oil Seeds',0.333333,0.227273,0.769231,0.909091,A
+'Kharif 2',Mar,'Apr to Jul',Jul,'Sesame 2','Oil Seeds',0.5,0.681818,0.307692,0.090909,A
+'Kharif 2',Jul,'Sep to Feb',Mar,'Bottle Gourd',Vegetables,0.666667,0.590909,0.846154,0.727273,A
+'Kharif 2',Sep,'Nov to Mar',Mar,Cucumber,Vegetables,0.666667,0.590909,0.615385,0.818182,A
+'Kharif 2',Sep,'Nov to Jan',Feb,Cauliflower,Vegetables,0.5,0.136364,0.769231,0.727273,A
+'Kharif 2',Sep,'Oct to Feb',Mar,'Chinese Cabbage',Vegetables,0.3,0.136364,0.769231,0.727273,A
+'Kharif 2',Oct,'Nov to Feb',Mar,Radish,Vegetables,0.233333,0.227273,0.846154,0.909091,A
+'Kharif 2',Oct,'Nov to Feb',Mar,Carrot,Vegetables,0.2,0.454545,0.415385,0.745455,A
+'Kharif 2',Sep,'Oct to Jan',Feb,Cabbage,Vegetables,0.3,0.227273,0.615385,0.818182,A
+'Kharif 2',Oct,'Nov to Aug',Aug,'Suger Can',Fruits,0.766667,0.681818,0.384615,0.727273,A
+'Kharif 2',Sep,'Oct to Feb',Mar,Jujube,Fruits,0.333333,0.454545,0.615385,0.636364,A
+'Kharif 2',Sep,'Sep to May',Jun,'Pine Apple',Fruits,0.666667,0.590909,0.769231,0.636364,A
+'Kharif 2',Aug,'Sep to Jan',Jan,Tomato,Vegetables,0.5,0.590909,0.923077,0.818182,A
+'Kharif 2',Oct,'Nov to Feb',Mar,'Yardlong Bean',Vegetables,0.4,0.727273,0.769231,0.636364,A
+'Kharif 2',Oct,'Nov to Jan',Feb,Garlic,Vegetables,0.5,0.681818,0.692308,0.454545,A
+'Kharif 2',Oct,'Nov to Jan',Feb,Coriander(Dhonia),Vegetables,0.2,0.590909,0.846154,0.727273,A
+'Kharif 2',Aug,'Sep to Jan',Feb,Spinach,Vegetables,0.5,0.318182,0.692308,0.545455,A
+'Kharif 2',Oct,'Dec to Feb',Feb,Barley,Cereals,0.333333,0.318182,0.923077,0.909091,A
+'Kharif 2',Sep,'Oct to Feb',Feb,'Sunn Hemp 2','Oil Seeds',0.4,0.590909,0.461538,0.727273,A
+'Kharif 2',Aug,'Sep to Feb',Feb,'Cotton 2',Fibre,0.5,0.590909,0.353846,0.563636,A
+'Kharif 2',Oct,'Nov  to  Jan',Feb,RapeSeed,'Oil Seeds',0.333333,0.227273,0.769231,0.909091,A
+'Kharif 2',Sep,'Oct to Dec',Dec,'Teel 2',Vegetables,0.5,0.681818,0.461538,0.727273,A
+'Kharif 2',Oct,'Nov to Mar',Mar,Linseed,Vegetables,0.5,0.454545,0.461538,0.454545,A
+'Kharif 2',Sep,'Oct to Dec',Dec,Barbati,Vegetables,0.5,0.681818,0.615385,0.727273,A
+'Kharif 2',Oct,'Nov to Feb',Feb,Kheshari,Vegetables,0.333333,0.227273,0,0,A
+'Kharif 2',Oct,'Nov to Mar',Mar,'Motor(Field Pea)',Vegetables,0.5,0.454545,0.846154,0.818182,A
+'Kharif 2',Oct,'Nov to Feb',Feb,Tobacco,Nicotine,0.166667,0.454545,0.461538,0.727273,A
+'Kharif 2',Sep,'Oct to Dec',Dec,'Oal Kapi(Knol Khol)',Vegetables,0.566667,0.454545,0.492308,0.454545,A
+'Kharif 2',Sep,'Oct to Nov',Nov,Shalgam(Turnip),Vegetables,0.3,0,0.769231,0.909091,A
+'Kharif 2',Sep,'Oct to Dec',Dec,Beetroot,Vegetables,0.3,0,0.769231,0.818182,A
+'Kharif 2',Oct,'Nov to Dec',Dec,Lettuce,Vegetables,0.3,0.090909,0.461538,0.454545,A
+'Kharif 2',Jul,'Aug to Jan',Jan,'Water Gourd',Vegetables,0.666667,0.590909,0.846154,0.727273,A
+'Kharif 2',Aug,'Sep to Jan',Jan,Patal,Vegetables,0.666667,0.681818,0.615385,0.727273,A
+'Kharif 2',Oct,'Nov to Feb',Feb,'Water Melon',Fruits,0.6,0.227273,0.692308,0.636364,A
+'Kharif 2',Oct,'Nov to Feb',Feb,Melon,Fruits,0.6,0.227273,0.692308,0.636364,A
+'Kharif 2',Oct,'Nov to Feb',Feb,'Kharmuj(Musk Melon)',Fruits,0.6,0.227273,0.692308,0.636364,A
+'Kharif 2',Sep,'No need to do',Apr,'Litchi 2',Fruits,0.433333,0.045455,0.769231,0.727273,B
+'Kharif 2',Sep,'No need to do',Apr,'Mango 2',Fruits,0.7,1,0.461538,0.818182,B
+'Kharif 2',Sep,'No need to do',Apr,'Jackfruit 2',Fruits,1.066667,0.772727,0.769231,0.909091,B
+'Kharif 2',Sep,'No need to do',May,'Pomelo 2',Fruits,0.5,0.909091,0.769231,0.818182,B
+'Kharif 2',Sep,'No need to do','Throuout The year','Dalim(Pomegranate) 2',Fruits,0.766667,0,0.769231,0.909091,B
+'Kharif 2',Sep,'No need to do',Feb,'Ber 2',Fruits,0.5,0.681818,0.615385,0.727273,B

@@ -1,0 +1,754 @@
+.team-section {
+    position: relative;
+
+    &::before {
+        @include before;
+        background: rgba(47, 47, 47, 0.9);
+    }
+
+    .section-title-area {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 48px;
+        margin-bottom: 48px !important;
+
+        @include breakpoint (max-xxl) {
+            padding-bottom: 30px;
+            padding-bottom: 30px !important;
+        }
+
+         .arrow-button {
+            @include flex;
+            gap: 12px;
+
+            .array-prev, .array-next {
+                width: 48px;
+                height: 48px;
+                line-height: 48px;
+                text-align: center;
+                border-radius: 100px;
+                background-color: $white;
+                @include transition;
+
+                img {
+                    @include transition;
+                }
+
+                &:hover {
+                    background-color: $theme-color-3;
+
+                    img {
+                        filter: brightness(0) invert(1);
+                    }
+                }
+            }
+        }
+    }
+
+    .team-slider {
+        margin-right: -450px;
+
+        @include breakpoint (max-xxxl) {
+            margin-right: -200px;
+        }
+
+         @include breakpoint (max-xxl) {
+            margin-right: 0;
+        }
+    }
+}
+
+.team-card-item {
+   
+    .team-image {
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            @include before;
+            background: linear-gradient(180deg, rgba(17, 162, 27, 0) 50%, #11A21B 90%);
+            border-radius: 10px;
+            opacity: 0;
+            visibility: hidden;
+            @include transition;
+        }
+
+        img {
+            @include imgw;
+            border-radius: 10px;
+        }
+
+        .social-icon {
+            @include flex;
+            gap: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            position: absolute;
+            bottom: -150px;
+            opacity: 0;
+            visibility: hidden;
+            @include transition;
+        
+            a {
+                display: inline-block;
+                width: 44px;
+                height: 44px;
+                line-height: 44px;
+                border-radius: 100px;
+                color: $white;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                text-align: center;
+
+                &:hover {
+                    background-color: $theme-color-3;
+                    border: 1px solid $theme-color-3;
+                }
+            }
+        }
+
+        .team-content {
+            left: 50%;
+            transform: translateX(-50%);
+            position: absolute;
+            bottom: -30px;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            @include transition;
+
+            h3 {
+                margin-bottom: 5px;
+
+                @include breakpoint (max-xxl) {
+                    font-size: 22px;
+                }
+
+                @include breakpoint (max-sm) {
+                    font-size: 20px;
+                }
+
+                a {
+                    background-position: 0 95%;
+                    background-repeat: no-repeat;
+                    background-size: 0% 2px;
+                    display: inline;
+                    color: $white;
+                
+                    &:hover {
+                        color: $white;
+                        background-size: 100% 2px;
+                        background-image: linear-gradient(180deg, $white 0%, $white 100%);
+                    }
+                }
+            }
+
+            p {
+                color: rgba(255, 255, 255, 1);
+                font-weight: 500;
+            }
+        }
+    }
+
+    &:hover {
+        .team-image {
+            &::before {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .social-icon {
+                bottom: 150px;
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .team-content {
+                bottom: 30px;
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}
+
+.team-card-items-2 {
+   border: 1px solid #D9D9D9;
+   text-align: center;
+   padding: 30px;
+   margin-top: 30px;
+   overflow: hidden;
+   border-radius: 10px;
+
+    .team-image {
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            @include before;
+            background: linear-gradient(180deg, rgba(17, 162, 27, 0) 50%, #11A21B 90%);
+            border-radius: 1000px;
+            opacity: 0;
+            visibility: hidden;
+            @include transition
+        }
+
+        img {
+            @include imgw;
+            border-radius: 10px;
+        }
+
+        .social-icon {
+            @include flex;
+            gap: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            position: absolute;
+            bottom: -100px;
+            opacity: 0;
+            visibility: hidden;
+            @include transition;
+        
+            a {
+                display: inline-block;
+                width: 44px;
+                height: 44px;
+                line-height: 44px;
+                border-radius: 100px;
+                color: $white;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                text-align: center;
+
+                &:hover {
+                    background-color: $theme-color-3;
+                    border: 1px solid $theme-color-3;
+                }
+            }
+        }
+    }
+
+    .team-content {
+        margin-top: 30px;
+        text-align: center;
+
+        h3 {
+            margin-bottom: 5px;
+
+            @include breakpoint (max-xxl) {
+                font-size: 22px;
+            }
+
+            @include breakpoint (max-sm) {
+                font-size: 20px;
+            }
+
+            a {
+                background-position: 0 95%;
+                background-repeat: no-repeat;
+                background-size: 0% 2px;
+                display: inline;
+            
+                &:hover {
+                    color: $white;
+                    background-size: 100% 2px;
+                    background-image: linear-gradient(180deg, $white 0%, $white 100%);
+                }
+            }
+        }
+
+        p {
+            font-weight: 500;
+        }
+    }
+
+    &:hover {
+        .team-image {
+            &::before {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .social-icon {
+                bottom: 100px;
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}
+
+.team-details-wrapper {
+    .team-details-image {
+        overflow: hidden;
+        border-radius: 12px;
+        
+        img {
+            @include imgw;
+            border-radius: 12px;
+        }
+    }
+
+    .team-details-content {
+        margin-left: 30px;
+        background-color: $bg-color-3;
+        border-radius: 10px;
+        padding: 45px 40px;
+
+        @include breakpoint (max-xl){
+            margin-left: 0;
+        }
+
+        .offer {
+            background-color: $theme-color-3;
+            color: $white;
+            padding: 8px 10px;
+            border-radius: 6px;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+        
+        .team-infrom {
+            margin-top: 30px;
+
+            li {
+                display: flex;
+                gap: 100px;
+                align-items: center;
+                color: $header-color;
+                font-size: 16px;
+                font-weight: 500;
+
+                @include breakpoint (max-xl){
+                    display: grid;
+                    gap: 20px;
+                }
+
+                span {
+                    color: $header-color;
+                    font-size: 16px;
+                    font-weight: 500;
+                    flex-basis: 28%;
+                }
+
+                &:not(:last-child) {
+                    margin-bottom: 12px;
+                }
+            }
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 60px;
+        }
+        
+        .social-icon {
+            display: flex;
+            margin-top: 30px;
+            gap: 15px;
+                
+            a {
+                color: $theme-color;
+                background: $white;
+                width: 48px;
+                height: 48px;
+                line-height: 48px;
+                display: inline-block;
+                text-align: center;
+                border-radius: 50%;
+
+                &:hover {
+                    background-color: $theme-color-3;
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    .team-middle-items {
+        .team-skill-area {
+            margin-top: 60px;
+
+            .skill-content {
+                margin-right: 60px;
+
+                @include breakpoint (max-xl){
+                    margin-right: 0;
+                }
+
+                h3 {
+                    font-size: 32px;
+                    font-weight: 600;
+                    margin-bottom: 20px;
+                }
+
+                .progress-wrap {
+                    .pro-items {
+                        width: 100%;
+            
+                        &:not(:last-child){
+                            margin-bottom: 30px;
+                        }
+                        .pro-head {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin-bottom: 10px;
+            
+                            .title {
+                                color: $header-color;
+                            }
+                            
+                            .point {
+                                font-size: 16px;
+                                color: $header-color;
+                            }
+                        }
+                        .progress {
+                            background-color: rgba(17, 162, 27, 0.5);
+                            justify-content: flex-start;
+                            align-items: center;
+                            position: relative;
+                            display: flex;
+                            height: 6px;
+                            width: 100%;
+                        }
+                        
+                        .progress-value {
+                            animation: load 3s normal forwards;
+                            border-radius: 0;
+                            background: $theme-color-3;
+                            height: 6px;
+                            width: 0;
+                        }
+                        .style-two{
+                            animation: load2 3s normal forwards;
+                        }
+                        .style-three{
+                            animation: load3 3s normal forwards;
+                        }
+                        @keyframes load {
+                            0% { width: 0; }
+                            100% { width: 69%; }
+                        }
+                        @keyframes load2 {
+                            0% { width: 0; }
+                            100% { width: 80%; }
+                        }
+                        @keyframes load3 {
+                            0% { width: 0; }
+                            100% { width: 98%; }
+                        }
+                    }
+                }
+            }
+
+            .career-content {
+                h3 {
+                    font-size: 32px;
+                    font-weight: 600;
+                    margin-bottom: 20px;
+                }
+
+                ul {
+                    li {
+                        display: flex;
+                        gap: 20px;
+
+                        &:not(:last-child){
+                            margin-bottom: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .team-bottom-items {
+        margin-top: 120px;
+        border-radius: 10px;
+        background: $bg-color-3;
+        padding: 80px 60px;
+
+        @include breakpoint (max-xl){
+            margin-top: 100px;
+            padding: 50px;
+        }
+
+        @include breakpoint (max-lg){
+            margin-top: 80px;
+        }
+
+        @include breakpoint (max-md){
+           padding: 40px 30px;
+        }
+
+        @include breakpoint (max-sm){
+           padding: 30px;
+        }
+        
+
+        .team-left-items {
+            p {
+                margin-top: 20px;
+            }
+
+            .phone-icon {
+                display: flex;
+                gap: 10px;
+                border-radius: 70px;
+                border: 1px solid #3D4857;
+                display: inline-flex;
+                padding: 20px;
+                font-weight: 600;
+                line-height: 1;
+                margin-top: 30px;
+
+                .icon {
+                    color: $header-color;
+                }
+            }
+        }
+
+        .team-right-items {
+            margin-left: 80px;
+
+            @include breakpoint (max-xl){
+                margin-left: 0;
+            }
+
+            .contact-form-box {
+                margin-top: 30px;
+
+                .form-clt {
+                    input,textarea {
+                        outline: none;
+                        width: 100%;
+                        color: $header-color;
+                        padding-bottom: 20px;
+                        border: none;
+                        background: transparent;
+                        border-bottom: 1px solid rgba(15, 23, 42, .2);
+                        text-transform: capitalize;
+
+                        &::placeholder {
+                            color: $header-color;
+                        }
+                    }
+
+                    textarea {
+                        padding-bottom: 120px;
+                    }
+
+                    .form {
+                    .single-select {
+                        border: none;
+                        border-bottom: 1px solid rgba(15, 23, 42, .2);
+                        background-color: transparent;
+                        width: 100%;
+                        height: initial;
+                        line-height: initial;
+                        text-transform: capitalize;
+                        color: $header-color;
+                        padding-bottom: 20px;
+                        border-radius: 0;
+
+                        .current {
+                            color: $header-color;
+                        }
+
+                        &::after {
+                            border-bottom: 2px solid $header-color;
+                            border-right: 2px solid $header-color;
+                            width: 8px;
+                            height: 8px;
+                            right: 12px;
+                        }
+
+                        .list {
+                            width: 100%;
+                        }
+                    }
+                }
+                }
+            }
+        }
+    }
+}
+
+.team-card-items-4 {
+    margin-top: 30px;
+    position: relative;
+    z-index: 9;
+    @include transition;
+    padding-bottom: 50px;
+
+    &::before {
+        position: absolute;
+        content: "";
+        border: 1px solid $theme-color-3;
+        border-radius: 10px;
+        top: -15px;
+        left: -12px;
+        width: 100%;
+        height: 80%;
+        z-index: -1;
+        opacity: 0;
+        visibility: hidden;
+         @include transition;
+
+         @include breakpoint (max-xxl) {
+            display: none;
+        }
+    }
+
+    .team-image {
+        position: relative;
+        overflow: hidden;
+       
+        img {
+            @include imgw;
+            border-radius: 10px;
+        }
+
+        .social-icon {
+            @include flex;
+            gap: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            position: absolute;
+            bottom: -50px;
+            opacity: 0;
+            visibility: hidden;
+            @include transition;
+        
+            a {
+                display: inline-block;
+                width: 44px;
+                height: 44px;
+                line-height: 44px;
+                border-radius: 100px;
+                color: $white;
+                background-color: $header-color;
+                text-align: center;
+
+                &:hover {
+                    background-color: $theme-color-3;
+                }
+            }
+        }
+    }
+
+    .team-content {
+        margin-top: 30px;
+        text-align: center;
+
+        h3 {
+            margin-bottom: 5px;
+
+            @include breakpoint (max-xxl) {
+                font-size: 22px;
+            }
+
+            @include breakpoint (max-sm) {
+                font-size: 20px;
+            }
+
+            a {
+                background-position: 0 95%;
+                background-repeat: no-repeat;
+                background-size: 0% 2px;
+                display: inline;
+            
+                &:hover {
+                    color: $theme-color-3;
+                    background-size: 100% 2px;
+                    background-image: linear-gradient(180deg, $theme-color-3 0%, $theme-color-3 100%);
+                }
+            }
+        }
+    }
+}
+
+
+.team-section-4 {
+    border-radius: 20px;
+    margin: 0 80px;
+    position: relative;
+
+    @include breakpoint (max-xxxl) {
+        margin: 0 50px;
+    }
+
+    @include breakpoint (max-xxl) {
+        margin: 0 30px;
+    }
+
+    @include breakpoint (max-sm) {
+        margin: 0 15px;
+    }
+
+     .arrow-button {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        z-index: 999;
+        justify-content: space-between;
+        position: absolute;
+        top: 50%;
+        left: 100px;
+        right: 100px;
+        transform: translateY(-50%);
+        z-index: 99;
+
+        @include breakpoint (max-xxl) {
+            display: none;
+        }
+        
+        .array-prev, .array-next {
+            width: 48px;
+            height: 48px;
+            line-height: 48px;
+            text-align: center;
+            border-radius: 100px;
+            border: 1px solid $theme-color-3;
+            @include transition;
+            position: relative;
+            z-index: 999;
+            display: inline-block;
+
+            img {
+                @include transition;
+            }
+
+            &:hover {
+                background-color: $theme-color-3;
+
+                img {
+                    filter: brightness(0) invert(1);
+                }
+            }
+        }
+    }
+
+    .swiper-slide.swiper-slide-active {
+
+        .team-card-items-4 {
+            transform: translateY(50px);
+
+            &::before {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .team-image {
+                
+                .social-icon {
+                    opacity: 1;
+                    visibility: visible;
+                    bottom: 50px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,119 @@
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: linear-gradient(180deg, #f5f6f4 0%, #eef1ea 100%);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--white);
+  border-radius: 20px;
+  box-shadow: var(--box-shadow);
+  padding: 36px 32px;
+}
+
+.auth-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--header);
+  margin-bottom: 24px;
+}
+
+.auth-brand-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 100px;
+  background-color: var(--theme3);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.auth-card h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.auth-subtitle {
+  font-size: 13.5px;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.auth-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--header);
+}
+
+.auth-field input {
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  padding: 12px 14px;
+  font-size: 14px;
+  color: var(--header);
+  outline: none;
+}
+
+.auth-field input:focus {
+  border-color: var(--theme3);
+}
+
+.auth-error {
+  background-color: rgba(200, 67, 58, 0.1);
+  color: var(--theme);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.auth-submit {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--theme3);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 13px;
+  transition: 0.2s ease-in-out;
+}
+
+.auth-submit:hover:not(:disabled) {
+  background-color: var(--header);
+}
+
+.auth-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--theme3);
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 18px;
+}

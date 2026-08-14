@@ -1,0 +1,146 @@
+.rag-test-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background: linear-gradient(180deg, #f5f6f4 0%, #eef1ea 100%);
+}
+
+.rag-test-card {
+  width: 100%;
+  max-width: 720px;
+}
+
+.rag-test-card h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.rag-test-subtitle {
+  font-size: 13.5px;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.rag-test-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.rag-test-form input {
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background-color: var(--white);
+  padding: 12px 14px;
+  font-size: 14px;
+  color: var(--header);
+  outline: none;
+}
+
+.rag-test-form input:focus {
+  border-color: var(--theme3);
+}
+
+.rag-test-filters {
+  display: flex;
+  gap: 10px;
+}
+
+.rag-test-filters input {
+  flex: 1;
+}
+
+.rag-test-form button {
+  align-self: flex-start;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--theme3);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 12px 24px;
+}
+
+.rag-test-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.rag-test-error {
+  background-color: rgba(200, 67, 58, 0.1);
+  color: var(--theme);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.rag-test-count {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.rag-chunk-card {
+  background-color: var(--white);
+  border-radius: 14px;
+  box-shadow: var(--box-shadow);
+  padding: 16px 18px;
+  margin-bottom: 14px;
+}
+
+.rag-answer-card {
+  background-color: var(--white);
+  border-left: 4px solid var(--theme3);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  padding: 18px 20px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--header);
+  white-space: pre-wrap;
+}
+
+.rag-chunk-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.rag-chunk-score {
+  background-color: var(--theme3);
+  color: var(--white);
+  border-radius: 100px;
+  padding: 3px 10px;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.rag-chunk-tag {
+  background-color: var(--bg);
+  color: var(--text);
+  border-radius: 100px;
+  padding: 3px 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.rag-chunk-heading {
+  font-weight: 700;
+  color: var(--header);
+  font-size: 13.5px;
+  margin-bottom: 6px;
+}
+
+.rag-chunk-content {
+  font-size: 13.5px;
+  color: var(--text);
+  white-space: pre-wrap;
+  margin: 0;
+}
