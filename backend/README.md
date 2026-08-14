@@ -1,6 +1,6 @@
-# AgriSense AI — Backend
+# Green Leaf AI — Backend
 
-FastAPI backend for AgriSense AI. Real, working pieces so far: **user authentication** (register/login/JWT), the **RAG knowledge base** (pgvector + `text-embedding-3-small` over the BARC agricultural handbook), and the **monitor agent** (a LangGraph graph that watches a real weather forecast and proactively adjusts a farm's season plan). The conversational **onboarding / crop recommendation / season planning** flow the chat UI shows is still simulated on the frontend — that's the conversation agent's separate, in-progress piece.
+FastAPI backend for Green Leaf AI. Real, working pieces so far: **user authentication** (register/login/JWT), the **RAG knowledge base** (pgvector + `text-embedding-3-small` over the BARC agricultural handbook), and the **monitor agent** (a LangGraph graph that watches a real weather forecast and proactively adjusts a farm's season plan). The conversational **onboarding / crop recommendation / season planning** flow the chat UI shows is still simulated on the frontend — that's the conversation agent's separate, in-progress piece.
 
 ## Setup
 

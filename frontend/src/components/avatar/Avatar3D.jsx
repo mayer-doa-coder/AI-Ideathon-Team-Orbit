@@ -14,7 +14,7 @@ import AvatarModel from "./AvatarModel";
 const LOAD_TIMEOUT_MS = 6000;
 
 /**
- * The Agrisense AI assistant's 3D avatar — renders the Mixamo character
+ * The Green Leaf AI assistant's 3D avatar — renders the Mixamo character
  * with a calm idle presence next to the chat conversation.
  *
  * `isSpeaking`/`audioLevel` are accepted now so a future TTS/Web Audio

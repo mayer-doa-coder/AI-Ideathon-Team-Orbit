@@ -1,9 +1,9 @@
-# How BDApps is integrated in AgriSense AI
+# How BDApps is integrated in Green Leaf AI
 
 BDApps is a Bangladeshi telecom platform that lets a registered application send and
 receive SMS, run USSD sessions, and charge a subscriber's mobile account directly —
 all without the person needing a smartphone, an app install, or even internet access.
-This document explains exactly how AgriSense AI plugs into it: what BDApps sends us,
+This document explains exactly how Green Leaf AI plugs into it: what BDApps sends us,
 what we send back, and where each piece lives in the code.
 
 For the plain-language "what is this project" version, see

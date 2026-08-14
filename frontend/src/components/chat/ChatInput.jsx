@@ -195,14 +195,19 @@ export default function ChatInput({
       {isProcessingVoice && <div className="chat-recording-indicator">{t("chatInput.processingVoice")}</div>}
 
       <div className="chat-input-bar">
+        {/* Tap to start, tap again to stop — stopping sends immediately.
+            Disabled only while a reply is streaming or the previous clip is
+            still being encoded, never permanently. */}
         <button
           type="button"
-          className="chat-icon-btn"
-          aria-label={t("chatInput.voiceUnavailableAria")}
-          title={t("chatInput.voiceUnavailableTitle")}
-          disabled
+          className={`chat-icon-btn${isRecording ? " chat-icon-btn-recording" : ""}`}
+          aria-label={isRecording ? t("chatInput.stopRecordingLabel") : t("chatInput.startRecordingLabel")}
+          title={isRecording ? t("chatInput.stopRecordingLabel") : t("chatInput.startRecordingLabel")}
+          aria-pressed={isRecording}
+          onClick={isRecording ? stopRecording : startRecording}
+          disabled={disabled || isProcessingVoice}
         >
-          <i className="fa-solid fa-microphone" />
+          <i className={`fa-solid ${isRecording ? "fa-stop" : "fa-microphone"}`} />
         </button>
         <button
           type="button"

@@ -16,6 +16,12 @@ class ChatRequest(BaseModel):
     # message. When present, the turn is routed straight to voice_input
     # instead of the normal intake path — see router.intake_router.
     audio_base64: str | None = None
+    # The farmer's current UI language ("bn" or "en"), sent by the frontend's
+    # language toggle. Used only as the speech-to-text language hint for
+    # audio_base64 — see tools/voice.transcribe_audio, where it measurably
+    # improves Bangla accuracy over auto-detection. Not used to translate
+    # anything; the agent already replies in the language it is addressed in.
+    language: str | None = None
 
 
 def serialize_crop_candidates(candidates: list[dict]) -> list[dict]:

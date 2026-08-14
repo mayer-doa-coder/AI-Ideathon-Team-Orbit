@@ -100,10 +100,23 @@ def supervisor_router(state: AgentState) -> str:
         return "end"
     if state.get("missing_fields"):
         return "ask_followup"
+
+    # Crop candidates need two independent inputs — a forecast and retrieved
+    # agronomy — so route to the fan-out, which runs both concurrently and
+    # joins into crop_recommendation. This replaces what used to be two
+    # sequential router passes (weather_tool, then crop_recommendation) and is
+    # the single biggest latency win in the turn. weather_tool no-ops if a
+    # forecast is already in state, so entering here with one is cheap.
+    # See nodes/gather_context.py.
+    if not state.get("crop_candidates"):
+        return "gather_context"
+
+    # Candidates already exist and only the forecast is missing (e.g. it was
+    # invalidated on its own): the standalone weather node handles that and
+    # re-enters this router, with no retrieval or re-ranking needed.
     if not state.get("weather_data"):
         return "weather_tool"
-    if not state.get("crop_candidates"):
-        return "crop_recommendation"
+
     if state.get("selected_crop"):
         return "season_planner"
     return "end"

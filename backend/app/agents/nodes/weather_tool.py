@@ -8,6 +8,16 @@ def weather_tool(state: AgentState) -> dict:
     if not location:
         return {}
 
+    # Already have a forecast for this profile — skip the geocode and the
+    # Open-Meteo round trip. This matters now that the node also runs as the
+    # weather half of the gather_context fan-out (graph_conversation.py):
+    # that branch is entered whenever crop candidates are missing, which can
+    # happen with a forecast already in state. core_change_handler clears
+    # weather_data when a location/soil/season change invalidates it, so a
+    # genuinely stale forecast still gets refetched.
+    if state.get("weather_data"):
+        return {}
+
     trace = []
     lat, lon = profile.get("lat"), profile.get("lon")
     profile_update: dict = {}

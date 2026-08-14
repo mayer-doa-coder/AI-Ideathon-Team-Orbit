@@ -24,7 +24,7 @@ export default function ContactPage() {
   const update = (field) => (event) => setForm({ ...form, [field]: event.target.value });
 
   const mailtoHref = `mailto:${contactInfo.email}?subject=${encodeURIComponent(
-    form.subject || `Message from ${form.name || "the AgriSense site"}`
+    form.subject || `Message from ${form.name || "the Green Leaf site"}`
   )}&body=${encodeURIComponent(`${form.message}\n\n— ${form.name}\n${form.email}`)}`;
 
   return (

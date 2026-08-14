@@ -17,7 +17,7 @@ voice_output.audio_path stays null and the farmer-facing message already in
 from langchain_core.messages import AIMessage
 
 from app.agents.state import AgentState
-from app.tools.voice import synthesize_speech
+from app.tools.voice import is_tts_available, synthesize_speech
 
 _SUMMARY_MAX_CHARS = 60
 
@@ -36,18 +36,33 @@ def voice_output(state: AgentState) -> dict:
     display_text = text if len(text) <= _SUMMARY_MAX_CHARS else f"{text[:_SUMMARY_MAX_CHARS]}..."
     audio_path = synthesize_speech(text)
 
+    # Distinguish "not installed" from "tried and failed". TTS needs
+    # torch/transformers, which are deliberately not in requirements.txt (see
+    # tools/voice.py), so on a normal deployment every voice turn lands here.
+    # Reporting that as a failure made the trace panel show a red error on
+    # every single voice message for a feature that is simply switched off.
+    tts_available = is_tts_available()
+    if audio_path:
+        summary = f"synthesized Bengali audio -> {audio_path}"
+        response = {"audio_path": audio_path}
+        tts_error = None
+    elif not tts_available:
+        summary = "text-to-speech is not enabled — replying with text only"
+        response = {"skipped": "TTS model not installed (torch/transformers absent)"}
+        tts_error = None
+    else:
+        summary = "MMS-TTS synthesis failed — returning text-only response"
+        response = {"error": "MMS-TTS synthesis failed"}
+        tts_error = "Bengali speech synthesis failed"
+
     trace = [
         {
             "type": "voice_output",
             "tool": "synthesize_speech",
             "paramsDisplay": f'text="{display_text}"',
             "params": {"text": text},
-            "response": {"audio_path": audio_path} if audio_path else {"error": "MMS-TTS synthesis failed"},
-            "summary": (
-                f"synthesized Bengali audio -> {audio_path}"
-                if audio_path
-                else "MMS-TTS synthesis failed — returning text-only response"
-            ),
+            "response": response,
+            "summary": summary,
         }
     ]
 
@@ -56,6 +71,6 @@ def voice_output(state: AgentState) -> dict:
         "voice_output": {
             "requested": True,
             "audio_path": audio_path,
-            "tts_error": None if audio_path else "Bengali speech synthesis failed",
+            "tts_error": tts_error,
         },
     }

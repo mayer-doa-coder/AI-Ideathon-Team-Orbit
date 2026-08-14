@@ -5,11 +5,26 @@
   overflow: hidden;
 }
 
+/*
+ * Chat gets a wider column than it used to (was capped at 480px). The input
+ * bar carries four controls — mic, camera, location, send — and at 480px the
+ * textarea was squeezed to about 200px, which wrapped and clipped its own
+ * placeholder. It also matters that this is a chat-first product: the
+ * dashboard side is empty until a plan exists, so the conversation should not
+ * be the narrower half. 46vw keeps it proportional on wide screens while the
+ * 620px cap stops the messages from becoming uncomfortably long lines.
+ */
 .dashboard-split {
   flex: 1;
   display: grid;
-  grid-template-columns: minmax(360px, 480px) 1fr;
+  grid-template-columns: minmax(420px, 46vw) 1fr;
   min-height: 0;
+}
+
+@media (min-width: 1400px) {
+  .dashboard-split {
+    grid-template-columns: minmax(520px, 620px) 1fr;
+  }
 }
 
 .dashboard-chat {
@@ -930,6 +945,87 @@
 
 .financial-summary-value.profit {
   color: var(--theme3);
+}
+
+/* --- before/after comparison -------------------------------------------
+   Shown only when a re-plan, scenario or monitor adjustment changed the
+   numbers during this session (see previousFinancials in ChatPage). The
+   superseded figure is struck through next to the new one so the farmer can
+   judge the change rather than just see the result. */
+
+.financial-compare-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background-color: rgba(245, 216, 62, 0.22);
+  color: #7d6a0c;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.financial-compare-note {
+  margin: 8px 0 14px;
+  font-size: 12.5px;
+  color: rgba(80, 98, 74, 0.85);
+}
+
+.financial-item-values {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.financial-was {
+  font-size: 12px;
+  color: rgba(80, 98, 74, 0.6);
+  text-decoration: line-through;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.financial-prev-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.financial-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.financial-delta i {
+  font-size: 9px;
+}
+
+/* Tone is "did this improve?", not "did the number rise?" — a fall in cost
+   is green, a fall in profit is red. See delta() in FinancialBreakdown.jsx. */
+.financial-delta.up {
+  background-color: rgba(17, 162, 27, 0.12);
+  color: var(--theme3);
+}
+
+.financial-delta.down {
+  background-color: rgba(200, 67, 58, 0.12);
+  color: var(--theme);
+}
+
+.financial-delta.flat {
+  background-color: var(--bg);
+  color: rgba(80, 98, 74, 0.7);
 }
 
 .financial-whatif {

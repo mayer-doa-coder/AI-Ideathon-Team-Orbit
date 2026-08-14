@@ -44,7 +44,7 @@ REPORT_PATH = "/commodity_wise_report"
 # scripts/ingest_market_prices.py), never inline during a live chat turn or
 # API request. Callers always read the stored result, which is fast.
 REQUEST_TIMEOUT = 60.0
-USER_AGENT = "Mozilla/5.0 (compatible; AgriSenseAI-MarketIntelligence/1.0)"
+USER_AGENT = "Mozilla/5.0 (compatible; Green LeafAI-MarketIntelligence/1.0)"
 
 SOURCE_NAME = "Bangladesh Department of Agricultural Marketing (DAM)"
 SOURCE_URL = f"{BASE_URL}{REPORT_PATH}"
@@ -58,7 +58,7 @@ PRICE_TYPE_BY_BANGLA = {
 
 # Real DAM Commodity_id values, found by inspecting the live commodity_wise_report
 # form's <select name="Commodity_id[]"> options directly (434 total commodities;
-# this is the subset matching AgriSense's existing canonical crop list — see
+# this is the subset matching Green Leaf's existing canonical crop list — see
 # tools/financials.py's MARKET_PRICE_BDT_PER_TON keys). Format is "<id>|<bangla label>",
 # exactly what the form's <option value=...> expects.
 #

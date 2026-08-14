@@ -1,4 +1,43 @@
 /*
+ * Brand logo sizing.
+ *
+ * The template shipped wide SVG wordmarks and therefore constrains their size
+ * almost nowhere — it let each SVG's intrinsic width do the work. The Green
+ * Leaf mark is a near-square PNG (195x200), so without explicit heights it
+ * renders at full size and blows the header apart. Every slot is pinned by
+ * height with auto width, which keeps the mark's aspect ratio whatever asset
+ * is dropped in later.
+ */
+.header-main .header-left .logo img,
+.offcanvas__logo img,
+.search_wrapper .search_top .search_logo img,
+.footer-logo img {
+  height: 52px;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+}
+
+/* The mark is near-square, so it buys far less width than the wide wordmark
+   the template was built around — at 52px the "GREEN LEAF" lettering inside it
+   is too small to read over the hero photo. The header bar has ~88px of
+   height to work with, so the logo takes most of it. */
+.header-main .header-left .logo img {
+  height: 68px;
+}
+
+.footer-logo img {
+  height: 64px;
+}
+
+@media (max-width: 767px) {
+  .header-main .header-left .logo img,
+  .offcanvas__logo img {
+    height: 42px;
+  }
+}
+
+/*
  * Inner-page breadcrumb header.
  *
  * Worth knowing before changing this: the template's own markup puts

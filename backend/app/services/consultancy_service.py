@@ -102,7 +102,7 @@ def compose_expert_reply(expert: Expert, topic: str) -> str:
     it references the farmer's question and the expert's specialty so it reads
     like a real first response, while staying an obvious stand-in for a human."""
     return (
-        f"Assalamu alaikum, thank you for reaching out to AgriSense expert desk.\n\n"
+        f"Assalamu alaikum, thank you for reaching out to Green Leaf expert desk.\n\n"
         f"Regarding your question — \"{topic.strip()}\" — here is my initial guidance "
         f"drawing on my work in {expert.specialty.lower()}:\n\n"
         f"1. Confirm the basics first: your crop's current growth stage, recent weather, "

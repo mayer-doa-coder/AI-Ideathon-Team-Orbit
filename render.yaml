@@ -1,4 +1,4 @@
-# Render Blueprint for AgriSense AI.
+# Render Blueprint for Green Leaf AI.
 # Deploys the FastAPI backend as a native Python web service and the Vite/React
 # frontend as a static site. This does NOT use the project's Dockerfiles —
 # Render builds/runs both services directly from source.

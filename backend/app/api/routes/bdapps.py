@@ -48,7 +48,7 @@ router = APIRouter(prefix="/api/bdapps", tags=["bdapps"])
 # single-screen budget so a long AI answer doesn't get silently truncated by
 # the carrier's own USSD gateway instead.
 USSD_MAX_CHARS = 300
-USSD_PROMPT = "Welcome to AgriSense! Type your farming question:"
+USSD_PROMPT = "Welcome to Green Leaf! Type your farming question:"
 
 
 async def _peek(request: Request) -> None:

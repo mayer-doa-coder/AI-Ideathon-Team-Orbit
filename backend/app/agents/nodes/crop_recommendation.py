@@ -9,8 +9,6 @@ from app.core.config import settings
 from app.db.session import SessionLocal
 from app.tools.market_analytics import get_market_snapshot
 from app.tools.market_decision import make_decision
-from app.tools.rag import is_grounded_enough, retrieve_agri_knowledge
-from app.tools.web_search import web_search_as_docs
 
 _PROMPT_PATH = Path(__file__).resolve().parent.parent / "prompts" / "crop_recommendation.md"
 _SYSTEM_PROMPT = _PROMPT_PATH.read_text(encoding="utf-8")
@@ -75,49 +73,17 @@ def crop_recommendation(state: AgentState) -> dict:
     profile = state.get("farm_profile") or {}
     weather = state.get("weather_data")
 
-    query = (
-        f"suitable crop varieties for {profile.get('soil_type', '')} soil "
-        f"in {profile.get('season', '')} season Bangladesh"
-    )
-    db = SessionLocal()
-    try:
-        docs = retrieve_agri_knowledge(db, query, k=6)
-    finally:
-        db.close()
-
-    trace = [
-        {
-            "type": "knowledge",
-            "tool": "retrieve_agri_knowledge",
-            "paramsDisplay": f'query="{query}"',
-            "params": {"query": query, "top_k": 6},
-            "response": {
-                "chunks_retrieved": len(docs),
-                "sources": sorted({d["source_title"] for d in docs}),
-                "top_chunk": docs[0]["content"][:280] if docs else None,
-            },
-            "summary": f"{len(docs)} chunks retrieved from the knowledge base",
-        }
-    ]
-
-    if not is_grounded_enough(docs):
-        # Knowledge base had nothing relevant for this soil/season
-        # combination — fall back to a real web search rather than let the
-        # LLM reason from unrooted general knowledge.
-        docs = web_search_as_docs(query, max_results=6)
-        trace.append(
-            {
-                "type": "knowledge",
-                "tool": "web_search",
-                "paramsDisplay": f'query="{query}"',
-                "params": {"query": query},
-                "response": {
-                    "chunks_retrieved": len(docs),
-                    "urls": [d["url"] for d in docs if d.get("url")],
-                },
-                "summary": f"knowledge base had nothing — {len(docs)} web results used instead",
-            }
-        )
+    # Retrieval and the weather lookup now happen upstream, concurrently —
+    # see nodes/knowledge_retrieval.py and the fan-out in
+    # graph_conversation.py. This node is the join: it only does the LLM
+    # ranking, over whatever both branches produced.
+    #
+    # `docs` may legitimately be empty if retrieval found nothing and the web
+    # fallback also came back empty; the prompt below already handles a thin
+    # context, and grounding is enforced by requiring each candidate to cite
+    # its reasoning.
+    docs = state.get("retrieved_docs") or []
+    trace: list[dict] = []
 
     context_lines = [f"Farm profile: {profile}"]
     if weather:
@@ -167,7 +133,6 @@ def crop_recommendation(state: AgentState) -> dict:
 
     return {
         "crop_candidates": candidates,
-        "retrieved_docs": docs,
         "trace_log": trace,
         "turn_complete": True,
         "messages": [AIMessage(content="\n".join(summary_lines))],

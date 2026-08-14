@@ -57,13 +57,18 @@ function fileToBase64(file) {
 // ChatInput's mic button (already re-encoded to real WAV, see
 // utils/audioToWav.js), routed by the backend straight to voice_input
 // instead of the normal intake path.
+// `language` is the farmer's current UI language ("bn" | "en"). It is sent
+// only so the backend can hint the speech-to-text model — on short utterances
+// the hint measurably beats auto-detection for Bangla. It does not change how
+// the agent replies.
 export async function streamChatMessage(
   token,
   message,
   onEvent,
   location = null,
   imageFile = null,
-  audioBlob = null
+  audioBlob = null,
+  language = null
 ) {
   const image_base64 = imageFile ? await fileToBase64(imageFile) : null;
   const audio_base64 = audioBlob ? await fileToBase64(audioBlob) : null;
@@ -79,6 +84,8 @@ export async function streamChatMessage(
       ...(location ? { lat: location.lat, lon: location.lon } : {}),
       ...(image_base64 ? { image_base64 } : {}),
       ...(audio_base64 ? { audio_base64 } : {}),
+      // Only meaningful alongside audio, but harmless otherwise.
+      ...(language ? { language } : {}),
     }),
   });
 

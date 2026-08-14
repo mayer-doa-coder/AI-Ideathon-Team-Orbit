@@ -14,7 +14,7 @@ export const heroContent = {
   eyebrow: "An agentic crop advisor for Bangladeshi farmers",
   heading: "From a Conversation to a Dated Season Plan",
   paragraph:
-    "Describe your farm in plain Bangla or English. AgriSense AI checks the real forecast, reads the national agronomy references, and returns a dated plan with the costs worked out.",
+    "Describe your farm in plain Bangla or English. Green Leaf AI checks the real forecast, reads the national agronomy references, and returns a dated plan with the costs worked out.",
   checklist: [
     "Real Open-Meteo forecasts",
     "Grounded in 4 national references",
@@ -69,7 +69,7 @@ export const features = [
 export const aboutContent = {
   headingLines: ["Answers You Can Trace", "Back to a Real Source"],
   paragraph:
-    "AgriSense AI is built as two LangGraph agents over a shared Postgres database. Before it recommends anything it retrieves the relevant passage from Bangladesh's own agronomy literature and calls a real weather API — and it shows you both.",
+    "Green Leaf AI is built as two LangGraph agents over a shared Postgres database. Before it recommends anything it retrieves the relevant passage from Bangladesh's own agronomy literature and calls a real weather API — and it shows you both.",
   // Verifiable counts, not audience metrics. Sources: README.md "Data: what is
   // real and what is mock" (four ingested references; 862 BARC chunks) and
   // tools/weather.py (the cross-verified 64-district coordinate table).
@@ -83,10 +83,10 @@ export const aboutContent = {
 };
 
 export const whyChooseUs = {
-  eyebrow: "why AgriSense?",
+  eyebrow: "why Green Leaf?",
   headingLines: ["Advice That Keeps Working", "After You Close the App"],
   paragraph:
-    "Most farming chatbots answer a question and forget it. AgriSense AI commits your plan to a database, then keeps checking it against the real forecast — and changes it when the numbers say it should.",
+    "Most farming chatbots answer a question and forget it. Green Leaf AI commits your plan to a database, then keeps checking it against the real forecast — and changes it when the numbers say it should.",
   highlights: [
     {
       title: "A Monitor Agent That Acts On Its Own",
@@ -145,7 +145,7 @@ export const faqStats = [
 
 export const faqItems = [
   {
-    question: "How does AgriSense AI know what to recommend?",
+    question: "How does Green Leaf AI know what to recommend?",
     answer:
       "It searches a knowledge base built from four real Bangladesh references — BARC's Hand Book of Agricultural Technology, the Fertilizer Recommendation Guide, the Soil Fertility Atlas and the Yearbook of Agricultural Statistics — and combines what it finds with a live weather forecast. If nothing in those references is close enough to your question, it runs a real web search instead of answering from memory.",
   },
@@ -200,7 +200,7 @@ export const testimonials = [
 export const blogPosts = [
   {
     icon: "fa-solid fa-diagram-project",
-    title: "Why AgriSense Runs Two Agents Instead of One Chatbot",
+    title: "Why Green Leaf Runs Two Agents Instead of One Chatbot",
     excerpt:
       "One agent plans with you; another keeps checking the forecast after you leave. Here's why that split matters.",
     date: "22 Jul, 2026",
@@ -245,7 +245,7 @@ export const footerLinks = {
     { label: "Help & FAQs", to: "/services" },
   ],
   company: [
-    { label: "About AgriSense", to: "/about" },
+    { label: "About Green Leaf", to: "/about" },
     { label: "What's Built", to: "/about" },
     { label: "Contact Us", to: "/contact" },
   ],
@@ -256,9 +256,9 @@ export const footerLinks = {
 export const contactInfo = {
   heading: "Contact Info",
   blurb:
-    "AgriSense AI is an agentic crop advisor for Bangladeshi farmers — ask it about crop choice, disease, weather or fertilizer in Bangla or English.",
+    "Green Leaf AI is an agentic crop advisor for Bangladeshi farmers — ask it about crop choice, disease, weather or fertilizer in Bangla or English.",
   address: "Khulna, Bangladesh",
-  email: "hello@agrisense.ai",
+  email: "hello@greenleaf.ai",
   hours: "Saturday–Thursday, 9am – 6pm",
   phone: "+880 1234 567890",
 };
@@ -378,7 +378,7 @@ export const aboutPage = {
     "After seed, fertilizer and labour — is there any profit left?",
   ],
   problemOutro:
-    "AgriSense AI is built to be the thing that answers all five together: the farmer describes their land in an ordinary conversation, and the system does the research and the arithmetic for them.",
+    "Green Leaf AI is built to be the thing that answers all five together: the farmer describes their land in an ordinary conversation, and the system does the research and the arithmetic for them.",
 
   statusHeading: "What is built, and what is not",
   statusIntro:

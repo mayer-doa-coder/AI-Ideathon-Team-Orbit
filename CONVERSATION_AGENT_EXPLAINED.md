@@ -1,6 +1,6 @@
 # The Conversation Agent, Explained Simply
 
-This document walks through **everything** the conversation agent does — every node, every decision, every piece of memory — in plain words, from the moment a farmer sends their very first message to the moment a full season plan is saved. It describes the code as it actually works today (not the original pitch/spec — see `AgriSense_AI_Architecture.md` for that earlier planning document).
+This document walks through **everything** the conversation agent does — every node, every decision, every piece of memory — in plain words, from the moment a farmer sends their very first message to the moment a full season plan is saved. It describes the code as it actually works today (not the original pitch/spec — see `Green Leaf_AI_Architecture.md` for that earlier planning document).
 
 There are two separate agents in this project:
 

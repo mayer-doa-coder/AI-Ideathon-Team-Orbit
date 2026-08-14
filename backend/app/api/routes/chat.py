@@ -51,6 +51,7 @@ def send_message(payload: ChatRequest, current_user: User = Depends(get_current_
             "current_location": {"lat": payload.lat, "lon": payload.lon} if has_location else None,
             "uploaded_image": payload.image_base64,
             "uploaded_audio": payload.audio_base64,
+            "ui_language": payload.language,
         }
         # Running cache: season_plan and financials arrive from two different
         # nodes (season_planner, then calculate_financials) but the frontend

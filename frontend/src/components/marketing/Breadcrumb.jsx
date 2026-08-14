@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../../context/LanguageContext";
-import "../../styles/marketing.css";
 
 /**
  * Agriva's breadcrumb-wrapper, used as the page header on every inner

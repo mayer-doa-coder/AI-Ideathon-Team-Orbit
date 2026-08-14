@@ -27,16 +27,21 @@
   margin-bottom: 24px;
 }
 
+/* Holds the Green Leaf mark. The green disc this used to be was a backdrop
+   for a white leaf glyph; the real logo carries its own dark-green frame and
+   a transparent background, so a coloured disc behind it just muddies the
+   edges. */
 .auth-brand-mark {
-  width: 38px;
   height: 38px;
-  border-radius: 100px;
-  background-color: var(--theme3);
-  color: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+}
+
+.auth-brand-mark img {
+  height: 38px;
+  width: auto;
+  display: block;
 }
 
 .auth-card h1 {

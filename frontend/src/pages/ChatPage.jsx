@@ -83,7 +83,7 @@ function cropIdFromName(name) {
 
 export default function ChatPage() {
   const { username, token, logout } = useAuth();
-  const { t, tf } = useLanguage();
+  const { t, tf, language } = useLanguage();
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -97,6 +97,16 @@ export default function ChatPage() {
   const [weather, setWeather] = useState(null);
   const [seasonPlan, setSeasonPlan] = useState(null);
   const [financials, setFinancials] = useState(null);
+  // The figures this plan replaced, so the breakdown can show a before/after
+  // when a re-plan, scenario or monitor adjustment changes the numbers. Null
+  // whenever the current figures are the first ones this session — there is
+  // nothing to compare against on a freshly loaded plan.
+  const [previousFinancials, setPreviousFinancials] = useState(null);
+  // setFinancials' updater cannot be used to read the old value here: these
+  // calls happen inside async stream/fetch callbacks where the captured
+  // `financials` is stale, and triggering a second setState from inside an
+  // updater fires twice under StrictMode.
+  const financialsRef = useRef(null);
   const [sources, setSources] = useState([]);
   const [marketCrops, setMarketCrops] = useState(["rice"]);
 
@@ -173,7 +183,7 @@ export default function ChatPage() {
         setSeasonPlan(
           state.season_plan ? { crop: state.selected_crop, milestones: state.season_plan } : null
         );
-        setFinancials(state.financials || null);
+        initFinancials(state.financials || null);
         setWeather(state.weather || null);
         setSources(state.sources || []);
         setTraceEntries(state.trace_log || []);
@@ -213,7 +223,7 @@ export default function ChatPage() {
           crop: plan.crop,
           milestones: serializeSeasonPlan(plan.season_plan, plan.financials),
         });
-        setFinancials(plan.financials || null);
+        initFinancials(plan.financials || null);
       })
       .catch(() => {
         if (!cancelled) setRealFarm(null);
@@ -279,6 +289,37 @@ export default function ChatPage() {
       next[idx] = { ...next[idx], ...patch };
       return next;
     });
+  }
+
+  // Replaces the figures and remembers what they replaced. Only records a
+  // previous set when one already existed and actually differs, so re-running
+  // a turn that produces identical numbers does not show a no-op comparison.
+  //
+  // The null case is the important one. A replan does not go straight from old
+  // figures to new: core_change_handler first invalidates the plan, which
+  // emits `financials: null`, and the recomputed figures only arrive a turn or
+  // two later. So the ref deliberately holds the last NON-null figures and is
+  // never cleared by an invalidation — otherwise the comparison the farmer
+  // actually wants (before the change vs after it) is lost in between.
+  function applyFinancials(next) {
+    if (!next) {
+      setFinancials(null);
+      return;
+    }
+    const prev = financialsRef.current;
+    if (prev && JSON.stringify(prev) !== JSON.stringify(next)) {
+      setPreviousFinancials(prev);
+    }
+    financialsRef.current = next;
+    setFinancials(next);
+  }
+
+  // Initial load of an already-saved plan: these are the farmer's current
+  // numbers, not a change, so any stale comparison is cleared.
+  function initFinancials(next) {
+    financialsRef.current = next || null;
+    setPreviousFinancials(null);
+    setFinancials(next);
   }
 
   function handleSend(text, imageFile = null, audioBlob = null) {
@@ -358,7 +399,7 @@ export default function ChatPage() {
             setWeather(event.weather || null);
             break;
           case "financials":
-            setFinancials(event.financials || null);
+            applyFinancials(event.financials || null);
             break;
           case "season_plan":
             // Milestones can legitimately come back null (a core-field
@@ -391,7 +432,9 @@ export default function ChatPage() {
       },
       location,
       imageFile,
-      audioBlob
+      audioBlob,
+      // Speech-to-text language hint for a voice message; ignored otherwise.
+      language
     )
       .catch((err) => {
         setMessages((prev) => [
@@ -429,7 +472,7 @@ export default function ChatPage() {
       crop: result.updated_plan.crop,
       milestones: serializeSeasonPlan(result.updated_plan, result.updated_financials),
     });
-    setFinancials(result.updated_financials || null);
+    applyFinancials(result.updated_financials || null);
   }
 
   function handleSimulateCheck() {
@@ -534,7 +577,11 @@ export default function ChatPage() {
             <SeasonPlanTimeline cropName={seasonPlan.crop} milestones={seasonPlan.milestones} />
           )}
           {financials && (
-            <FinancialBreakdown cropName={selectedCrop?.name ?? seasonPlan?.crop} financials={financials} />
+            <FinancialBreakdown
+              cropName={selectedCrop?.name ?? seasonPlan?.crop}
+              financials={financials}
+              previous={previousFinancials}
+            />
           )}
           {realFarm && (
             <AlertsFeed

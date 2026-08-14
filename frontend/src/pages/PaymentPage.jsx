@@ -5,9 +5,9 @@ import { useAuth } from "../context/AuthContext";
 import "../styles/payment.css";
 
 const PLANS = [
-  { id: "season-report", label: "Premium Season Report", amount: 5, description: "AgriSense Premium Season Report" },
-  { id: "crop-diagnosis", label: "Priority Crop Diagnosis", amount: 10, description: "AgriSense Priority Crop Diagnosis" },
-  { id: "monthly", label: "Monthly Advisory Pass", amount: 49, description: "AgriSense Monthly Advisory Pass" },
+  { id: "season-report", label: "Premium Season Report", amount: 5, description: "Green Leaf Premium Season Report" },
+  { id: "crop-diagnosis", label: "Priority Crop Diagnosis", amount: 10, description: "Green Leaf Priority Crop Diagnosis" },
+  { id: "monthly", label: "Monthly Advisory Pass", amount: 49, description: "Green Leaf Monthly Advisory Pass" },
 ];
 
 export default function PaymentPage() {
@@ -62,7 +62,7 @@ export default function PaymentPage() {
         <Link to="/chat" className="payment-back-link">
           &larr; Back to dashboard
         </Link>
-        <h1>AgriSense Premium</h1>
+        <h1>Green Leaf Premium</h1>
         <p className="payment-subtitle">
           Pay directly from your mobile operator balance via BDApps CaaS — no card, no bank account
           needed. A successful payment unlocks one-to-one Expert Consultancy with crop specialists.

@@ -28,7 +28,7 @@ EMBEDDING_BATCH_SIZE = 100
 
 DEFAULT_SOURCE = (
     Path(__file__).resolve().parent.parent.parent
-    / "datasets-AgriSense AI"
+    / "datasets-Green Leaf AI"
     / "Yearbook_2020_Chapter1_AEZ_Soil_CropCalendar.pdf"
 )
 DEFAULT_TITLE = "Yearbook of Agricultural Statistics 2020 — Ch.1: AEZ, Soil Classification, Crop Calendar (BBS, 32nd Series)"

@@ -23,7 +23,7 @@ async def lifespan(app: FastAPI):
     stop_scheduler()
 
 
-app = FastAPI(title="AgriSense AI API", lifespan=lifespan)
+app = FastAPI(title="Green Leaf AI API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -55,4 +55,4 @@ app.mount("/generated_audio", StaticFiles(directory=str(AUDIO_OUTPUT_DIR)), name
 
 @app.get("/")
 def root():
-    return {"status": "ok", "service": "AgriSense AI API"}
+    return {"status": "ok", "service": "Green Leaf AI API"}

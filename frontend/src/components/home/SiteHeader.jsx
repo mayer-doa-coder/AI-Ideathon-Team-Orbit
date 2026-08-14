@@ -15,7 +15,7 @@ import { useHomeContent } from "../../data/useHomeContent";
  * Renaming any of them silently drops the behaviour.
  *
  * What differs from the template: the demo nav (four homepage variants, shop,
- * portfolio, team, 404) is replaced with AgriSense's real destinations, since
+ * portfolio, team, 404) is replaced with Green Leaf's real destinations, since
  * those pages do not exist here and would 404. The markup shape around them —
  * the mega-menu thumbnail grid, the nested submenus — is unchanged.
  */
@@ -31,10 +31,10 @@ export default function SiteHeader() {
             <div className="header-left">
               <div className="logo">
                 <Link to="/" className="header-logo">
-                  <img src="/assets/img/logo/white-logo.svg" alt="AgriSense AI" />
+                  <img src="/assets/img/logo-mark.png" alt="Green Leaf AI" />
                 </Link>
                 <Link to="/" className="header-logo-2">
-                  <img src="/assets/img/logo/black-logo-2.svg" alt="AgriSense AI" />
+                  <img src="/assets/img/logo-mark.png" alt="Green Leaf AI" />
                 </Link>
               </div>
             </div>

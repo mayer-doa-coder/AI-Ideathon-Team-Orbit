@@ -1,6 +1,6 @@
-# AgriSense AI — the whole project, explained simply
+# Green Leaf AI — the whole project, explained simply
 
-This document tells the whole story of AgriSense AI in plain language — the problem it
+This document tells the whole story of Green Leaf AI in plain language — the problem it
 solves, how it actually works from the moment a farmer types a message to the moment
 they get a plan, and what's real versus not-yet-built. No code, no jargon you haven't
 already been shown.
@@ -29,14 +29,14 @@ soil handbooks, and market price boards — but it's scattered across different 
 written for agronomists, not farmers, and nobody hands Rahim one clear, dated plan
 built specifically around *his* two acres.
 
-AgriSense AI is built to be the thing that does that: a farmer describes their farm in
+Green Leaf AI is built to be the thing that does that: a farmer describes their farm in
 a normal conversation, and the system does the research and the arithmetic for them.
 
 ---
 
 ## 2. The two-agent idea
 
-Most chatbots are one thing: you ask, it answers. AgriSense AI is built as **two
+Most chatbots are one thing: you ask, it answers. Green Leaf AI is built as **two
 separate "agents"** (two independent decision-making systems) that share the same
 database:
 

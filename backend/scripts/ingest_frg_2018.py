@@ -27,7 +27,7 @@ EMBEDDING_BATCH_SIZE = 100
 
 DEFAULT_SOURCE = (
     Path(__file__).resolve().parent.parent.parent
-    / "datasets-AgriSense AI"
+    / "datasets-Green Leaf AI"
     / "FRG-2018_embeddings_ready.pdf"
 )
 DEFAULT_TITLE = "Fertilizer Recommendation Guide-2018 (BARC)"

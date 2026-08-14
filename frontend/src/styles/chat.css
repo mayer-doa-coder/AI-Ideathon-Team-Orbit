@@ -16,16 +16,19 @@
   color: inherit;
 }
 
+/* See the note on .auth-brand-mark in auth.css — the logo replaces the green
+   disc rather than sitting on top of it. */
 .chat-header-mark {
-  width: 44px;
   height: 44px;
-  border-radius: 100px;
-  background-color: var(--theme3);
-  color: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+}
+
+.chat-header-mark img {
+  height: 44px;
+  width: auto;
+  display: block;
 }
 
 .chat-header h1 {
@@ -328,10 +331,26 @@
   gap: 10px;
 }
 
+/*
+ * Four controls plus a growing textarea share this row, so the spacing is
+ * tighter than elsewhere: at the old 44px buttons and 10px gaps the textarea
+ * was left with ~200px and wrapped its own placeholder onto a clipped second
+ * line. align-items: flex-end keeps the buttons pinned to the bottom of the
+ * textarea as it grows with multi-line input rather than floating mid-height.
+ */
 .chat-input-bar {
   display: flex;
   align-items: flex-end;
-  gap: 10px;
+  gap: 8px;
+}
+
+/* Keeps the three tool buttons together and lets only the textarea absorb
+   the remaining width. */
+.chat-input-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
 }
 
 .chat-image-preview {
@@ -371,19 +390,34 @@
 }
 
 .chat-input-bar textarea {
-  flex: 1;
+  flex: 1 1 auto;
+  /* Without an explicit basis a flex item refuses to shrink below its
+     content's intrinsic width, which is what pushed the row over its column
+     and clipped the text. */
+  min-width: 0;
   resize: none;
   border-radius: 24px;
   border: 1px solid var(--border);
   background-color: var(--bg);
-  padding: 14px 20px;
+  padding: 13px 18px;
   font-size: 15px;
   font-family: inherit;
-  line-height: 1.4;
+  line-height: 1.45;
   color: var(--header);
   outline: none;
-  max-height: 200px;
+  /* Matches the 44px control height exactly, so a single-line placeholder
+     sits on one line instead of wrapping into a cut-off second one. */
+  min-height: 44px;
+  max-height: 180px;
   overflow-y: auto;
+}
+
+.chat-input-bar textarea::placeholder {
+  /* Bangla placeholders run longer than the English ones; ellipsis is
+     clearer than a placeholder that visibly runs out of room. */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .chat-input-bar textarea:focus {
@@ -395,9 +429,9 @@
 }
 
 .chat-icon-btn {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
   border-radius: 50%;
   border: 1px solid var(--border);
   background-color: var(--bg);
@@ -416,6 +450,39 @@
   border-color: var(--theme3);
   color: var(--theme3);
   opacity: 1;
+}
+
+/* Recording state for the mic button. Uses --theme (red) to match
+   .recording-dot below, so the button and the status line read as one state.
+   The halo is a box-shadow rather than a scale transform so the button does
+   not shift the toolbar layout while it pulses. */
+.chat-icon-btn-recording {
+  border-color: var(--theme);
+  background-color: var(--theme);
+  color: var(--white);
+  opacity: 1;
+  animation: recording-btn-pulse 1.4s infinite ease-in-out;
+}
+
+.chat-icon-btn-recording:hover {
+  background-color: var(--theme);
+  color: var(--white);
+}
+
+@keyframes recording-btn-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(200, 67, 58, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(200, 67, 58, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chat-icon-btn-recording {
+    animation: none;
+  }
 }
 
 .chat-send-btn {
@@ -489,8 +556,13 @@
 }
 
 /* Voice message tag on a user bubble (ChatMessage) */
+/* `flex` rather than `inline-flex`: the transcript is a bare text node
+   immediately after this element, so as an inline box the tag ran straight
+   into the first word ("VOICE MESSAGEআমার রাজশাহীতে..."). A block-level flex
+   box with fit-content width keeps the chip tight but on its own line. */
 .voice-message-tag {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
   align-items: center;
   gap: 5px;
   font-size: 10.5px;

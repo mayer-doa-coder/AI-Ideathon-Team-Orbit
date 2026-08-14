@@ -10,6 +10,8 @@ from app.agents.nodes.crop_recommendation import crop_recommendation
 from app.agents.nodes.load_memory import load_memory
 from app.agents.nodes.disease_detection import disease_detection
 from app.agents.nodes.disease_explanation import disease_explanation
+from app.agents.nodes.gather_context import gather_context
+from app.agents.nodes.knowledge_retrieval import knowledge_retrieval
 from app.agents.nodes.market_price_lookup import market_price_lookup
 from app.agents.nodes.marketplace_lookup import marketplace_lookup
 from app.agents.nodes.off_topic_redirect import off_topic_redirect
@@ -31,6 +33,14 @@ builder.add_node("classify_intent", classify_intent)
 builder.add_node("core_change_handler", core_change_handler)
 builder.add_node("ask_followup", ask_followup)
 builder.add_node("weather_tool", weather_tool)
+# The parallel branch. Same function as "weather_tool", registered under a
+# second name because the two need different outgoing edges: the standalone
+# node re-enters the supervisor router, while this one joins straight into
+# crop_recommendation. A node cannot have both a conditional and a plain edge
+# without the plain one always firing.
+builder.add_node("weather_parallel", weather_tool)
+builder.add_node("knowledge_retrieval", knowledge_retrieval)
+builder.add_node("gather_context", gather_context)
 builder.add_node("crop_recommendation", crop_recommendation)
 builder.add_node("disease_detection", disease_detection)
 builder.add_node("disease_explanation", disease_explanation)
@@ -63,7 +73,12 @@ ROUTE_MAP = {
     "core_change_handler": "core_change_handler",
     "ask_followup": "ask_followup",
     "weather_tool": "weather_tool",
-    "crop_recommendation": "crop_recommendation",
+    # crop_recommendation is deliberately NOT reachable from the router any
+    # more. It no longer retrieves its own agronomy — knowledge_retrieval does,
+    # in parallel with the forecast — so entering it directly would rank crops
+    # against an empty context. The only way in is the gather_context fan-out,
+    # which guarantees both inputs are present.
+    "gather_context": "gather_context",
     "season_planner": "season_planner",
     "qa_agent": "qa_agent",
     "casual_response": "casual_response",
@@ -87,6 +102,13 @@ builder.add_conditional_edges("weather_tool", supervisor_router, ROUTE_MAP)
 builder.add_conditional_edges("core_change_handler", supervisor_router, ROUTE_MAP)
 
 builder.add_edge("ask_followup", "voice_output")
+# --- parallel context gathering -------------------------------------------
+# gather_context fans out; crop_recommendation is the join and runs once, after
+# both branches finish. See nodes/gather_context.py for why this is safe.
+builder.add_edge("gather_context", "weather_parallel")
+builder.add_edge("gather_context", "knowledge_retrieval")
+builder.add_edge("weather_parallel", "crop_recommendation")
+builder.add_edge("knowledge_retrieval", "crop_recommendation")
 builder.add_edge("crop_recommendation", "voice_output")
 builder.add_edge("disease_detection", "disease_explanation")
 builder.add_edge("disease_explanation", "voice_output")

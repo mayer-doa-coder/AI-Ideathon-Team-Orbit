@@ -8,7 +8,7 @@ export default function ChatHeader({ username, onLogout }) {
     <header className="chat-header">
       <Link to="/" className="chat-header-brand">
         <span className="chat-header-mark">
-          <i className="fa-solid fa-leaf" />
+          <img src="/assets/img/logo-mark.png" alt="" />
         </span>
         <div>
           <h1>{t("chatHeader.brand")}</h1>

@@ -10,7 +10,7 @@ BDAPPS_SUCCESS_STATUS_CODE = "S1000"
 class CheckoutRequest(BaseModel):
     msisdn: str = Field(..., description="Subscriber MSISDN to charge, e.g. 01605012802 or 8801605012802")
     amount: float = Field(..., gt=0, description="Amount in BDT to deduct from the subscriber's operator account")
-    description: str = Field(default="AgriSense Premium Report", max_length=255)
+    description: str = Field(default="Green Leaf Premium Report", max_length=255)
 
 
 class CheckoutReceipt(BaseModel):

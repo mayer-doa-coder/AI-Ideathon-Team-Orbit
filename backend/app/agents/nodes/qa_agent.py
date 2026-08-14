@@ -44,7 +44,7 @@ except ImportError:  # pragma: no cover - fallback for older langchain layouts
 HISTORY_TURNS = 6
 
 SYSTEM_PROMPT = (
-    "You are AgriSense AI, an agricultural advisor for farmers in Bangladesh, talking "
+    "You are Green Leaf AI, an agricultural advisor for farmers in Bangladesh, talking "
     "directly to one specific farmer about their specific farm. You have four tools: "
     "farm_dashboard (the farmer's own farm profile, selected crop, season plan, and "
     "financial cost/revenue/profit breakdown, exactly as already shown on their "

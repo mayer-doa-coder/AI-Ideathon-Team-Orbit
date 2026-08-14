@@ -1,4 +1,4 @@
-// Full English/Bangla dictionary for the AgriSense AI frontend. Organized
+// Full English/Bangla dictionary for the Green Leaf AI frontend. Organized
 // by component/page so a translator (or future editor) can find a string
 // the same way they'd find its JSX. Dynamic values (crop names, farmer
 // text, LLM/server output) are never translated here — only static UI
@@ -11,7 +11,7 @@ export const translations = {
       genericError: "Something went wrong. Please try again.",
     },
     chatHeader: {
-      brand: "AgriSense AI",
+      brand: "Green Leaf AI",
       subtitle: "Crop Doctor Assistant",
       online: "Online",
       logout: "Log out",
@@ -24,8 +24,8 @@ export const translations = {
       imageTypeError: "Please choose an image file.",
       imageSizeError: "That photo is too large — please use one under 8MB.",
       imageDropError: "Please drop an image file.",
-      voiceUnavailableAria: "Voice input (temporarily unavailable)",
-      voiceUnavailableTitle: "Voice input is temporarily unavailable",
+      startRecordingLabel: "Record a voice message (Bangla or English)",
+      stopRecordingLabel: "Stop and send the recording",
       attachPhotoLabel: "Attach a crop photo for disease detection",
       removePhotoLabel: "Remove photo",
       sendLabel: "Send message",
@@ -135,6 +135,9 @@ export const translations = {
       roi: "ROI",
       breakEven: "Break-even",
       breakEvenTemplate: "{tons} tons",
+      updatedBadge: "Plan updated",
+      compareNote: "Comparing against the figures this plan replaced — struck-through values are the previous plan.",
+      unchanged: "no change",
       helpNote:
         'Ask in the chat — e.g. "what if my budget drops 40%?" — and the agent will recalculate this against your actual plan.',
     },
@@ -163,12 +166,12 @@ export const translations = {
       illGoWithTemplate: "I'll go with {crop}.",
       heavyRainAlertTemplate: "Heavy rain ({mm}mm) forecast on {date}.",
       greeting:
-        "Hi, I'm your AgriSense AI planning assistant. Tell me about your farm — location, " +
+        "Hi, I'm your Green Leaf AI planning assistant. Tell me about your farm — location, " +
         "acreage, soil type, water availability, budget, and the season you're planning for — " +
         "and I'll check the weather and knowledge base to build you a season plan.",
     },
     loginPage: {
-      brand: "AgriSense AI",
+      brand: "Green Leaf AI",
       welcomeBack: "Welcome back",
       createAccount: "Create your account",
       loginSubtitle: "Log in to continue your farm planning session.",
@@ -182,7 +185,7 @@ export const translations = {
       toggleToLogin: "Already have an account? Log in",
     },
     askPage: {
-      title: "Ask AgriSense",
+      title: "Ask Green Leaf",
       subtitle: "Ask a question in plain language — it's answered from the embedded BARC handbook only.",
       placeholder: "e.g. when should I plant Boro rice and how much urea does it need?",
       thinking: "Thinking...",
@@ -213,7 +216,7 @@ export const translations = {
         navAbout: "About",
         navServices: "Services",
         navContact: "Contact",
-        brand: "AgriSense AI",
+        brand: "Green Leaf AI",
         cropDoctor: "Crop Doctor",
         askCropDoctor: "Ask Crop Doctor",
         toggleMenu: "Toggle menu",
@@ -254,7 +257,7 @@ export const translations = {
       },
       faq: {
         subTitle: "Ask, Learn, and Grow With Us",
-        heading: "How AgriSense AI Works, Answered Plainly",
+        heading: "How Green Leaf AI Works, Answered Plainly",
       },
       // This section presents the real data sources the system is grounded in,
       // not customer quotes — see the note above `testimonials` in
@@ -266,20 +269,20 @@ export const translations = {
       },
       newsBlog: {
         subTitle: "our latest news and insights",
-        heading: "AgriSense AI News & Blog",
+        heading: "Green Leaf AI News & Blog",
         readMore: "Read More",
       },
       footer: {
         callForDetails: "call for details",
         emailUs: "email us",
-        newsletterHeading: "Get farming insights from AgriSense AI",
+        newsletterHeading: "Get farming insights from Green Leaf AI",
         emailPlaceholder: "Enter your email",
         subscribe: "subscribe now",
         agreeTerms: "Agree with terms and conditions",
         services: "Services",
         resources: "Resources",
         company: "Company",
-        copyright: "© 2026 AgriSense AI. All Rights Reserved.",
+        copyright: "© 2026 Green Leaf AI. All Rights Reserved.",
       },
       carousel: {
         previous: "Previous",
@@ -306,11 +309,11 @@ export const translations = {
     },
     services: {
       title: "Services",
-      heading: "Everything AgriSense AI Actually Does",
+      heading: "Everything Green Leaf AI Actually Does",
     },
     blog: {
       title: "Blog",
-      heading: "Notes on How AgriSense Is Built",
+      heading: "Notes on How Green Leaf Is Built",
       docsHeading: "The long-form documentation",
       docsIntro:
         "The detailed write-ups live in the repository rather than as articles here, so they stay in step with the code:",
@@ -322,7 +325,7 @@ export const translations = {
     contact: {
       title: "Contact Us",
       eyebrow: "get in touch",
-      heading: "Talk to the Team Behind AgriSense",
+      heading: "Talk to the Team Behind Green Leaf",
       fastestHeading: "The fastest answer is the agent itself",
       fastestText:
         "For anything about a crop, a plan or a diagnosis, the Crop Doctor will answer immediately — no waiting on a reply.",
@@ -349,7 +352,7 @@ export const translations = {
       genericError: "কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।",
     },
     chatHeader: {
-      brand: "AgriSense AI",
+      brand: "Green Leaf AI",
       subtitle: "ক্রপ ডক্টর সহকারী",
       online: "অনলাইন",
       logout: "লগ আউট",
@@ -362,8 +365,8 @@ export const translations = {
       imageTypeError: "অনুগ্রহ করে একটি ছবি ফাইল নির্বাচন করুন।",
       imageSizeError: "ছবিটি অনেক বড় — অনুগ্রহ করে ৮MB এর কম আকারের ছবি ব্যবহার করুন।",
       imageDropError: "অনুগ্রহ করে একটি ছবি ফাইল ড্রপ করুন।",
-      voiceUnavailableAria: "ভয়েস ইনপুট (সাময়িকভাবে অনুপলব্ধ)",
-      voiceUnavailableTitle: "ভয়েস ইনপুট সাময়িকভাবে অনুপলব্ধ",
+      startRecordingLabel: "ভয়েস বার্তা রেকর্ড করুন (বাংলা বা ইংরেজি)",
+      stopRecordingLabel: "থামিয়ে পাঠিয়ে দিন",
       attachPhotoLabel: "রোগ শনাক্তকরণের জন্য ফসলের ছবি সংযুক্ত করুন",
       removePhotoLabel: "ছবি সরান",
       sendLabel: "বার্তা পাঠান",
@@ -473,6 +476,9 @@ export const translations = {
       roi: "বিনিয়োগে মুনাফা (ROI)",
       breakEven: "ব্রেক-ইভেন",
       breakEvenTemplate: "{tons} টন",
+      updatedBadge: "পরিকল্পনা হালনাগাদ",
+      compareNote: "এই পরিকল্পনা যে হিসাবের জায়গা নিয়েছে তার সাথে তুলনা — কাটা দাগ দেওয়া সংখ্যাগুলো আগের পরিকল্পনার।",
+      unchanged: "কোনো পরিবর্তন নেই",
       helpNote:
         'চ্যাটে জিজ্ঞাসা করুন — যেমন "আমার বাজেট ৪০% কমে গেলে কী হবে?" — এজেন্ট আপনার প্রকৃত পরিকল্পনার ভিত্তিতে এটি আবার হিসাব করে দেবে।',
     },
@@ -501,12 +507,12 @@ export const translations = {
       illGoWithTemplate: "আমি {crop} বেছে নিচ্ছি।",
       heavyRainAlertTemplate: "{date} তারিখে ভারী বৃষ্টির (~{mm}মিমি) পূর্বাভাস রয়েছে।",
       greeting:
-        "হ্যালো, আমি আপনার AgriSense AI পরিকল্পনা সহকারী। আপনার খামার সম্পর্কে বলুন — অবস্থান, " +
+        "হ্যালো, আমি আপনার Green Leaf AI পরিকল্পনা সহকারী। আপনার খামার সম্পর্কে বলুন — অবস্থান, " +
         "জমির পরিমাণ, মাটির ধরন, পানির প্রাপ্যতা, বাজেট এবং যে মৌসুমের জন্য পরিকল্পনা করছেন — " +
         "আমি আবহাওয়া ও জ্ঞানভাণ্ডার যাচাই করে আপনার জন্য একটি মৌসুম পরিকল্পনা তৈরি করে দেব।",
     },
     loginPage: {
-      brand: "AgriSense AI",
+      brand: "Green Leaf AI",
       welcomeBack: "আবার স্বাগতম",
       createAccount: "আপনার অ্যাকাউন্ট তৈরি করুন",
       loginSubtitle: "আপনার খামার পরিকল্পনা সেশন চালিয়ে যেতে লগ ইন করুন।",
@@ -520,7 +526,7 @@ export const translations = {
       toggleToLogin: "ইতিমধ্যে অ্যাকাউন্ট আছে? লগ ইন করুন",
     },
     askPage: {
-      title: "AgriSense-কে জিজ্ঞাসা করুন",
+      title: "Green Leaf-কে জিজ্ঞাসা করুন",
       subtitle: "সহজ ভাষায় প্রশ্ন করুন — শুধুমাত্র এম্বেডেড BARC হ্যান্ডবুক থেকে উত্তর দেওয়া হয়।",
       placeholder: "যেমন: বোরো ধান কখন লাগানো উচিত এবং কতটা ইউরিয়া দরকার?",
       thinking: "চিন্তা করছে...",
@@ -551,7 +557,7 @@ export const translations = {
         navAbout: "আমাদের সম্পর্কে",
         navServices: "সেবাসমূহ",
         navContact: "যোগাযোগ",
-        brand: "AgriSense AI",
+        brand: "Green Leaf AI",
         cropDoctor: "ক্রপ ডক্টর",
         askCropDoctor: "ক্রপ ডক্টরকে জিজ্ঞাসা করুন",
         toggleMenu: "মেনু টগল করুন",
@@ -592,7 +598,7 @@ export const translations = {
       },
       faq: {
         subTitle: "জিজ্ঞাসা করুন, শিখুন, আমাদের সাথে বেড়ে উঠুন",
-        heading: "AgriSense AI কীভাবে কাজ করে, সহজ ভাষায়",
+        heading: "Green Leaf AI কীভাবে কাজ করে, সহজ ভাষায়",
       },
       testimonials: {
         subTitle: "প্রকৃত উৎসের ভিত্তিতে",
@@ -601,20 +607,20 @@ export const translations = {
       },
       newsBlog: {
         subTitle: "আমাদের সাম্প্রতিক খবর ও তথ্য",
-        heading: "AgriSense AI খবর ও ব্লগ",
+        heading: "Green Leaf AI খবর ও ব্লগ",
         readMore: "আরও পড়ুন",
       },
       footer: {
         callForDetails: "বিস্তারিত জানতে কল করুন",
         emailUs: "ইমেইল করুন",
-        newsletterHeading: "AgriSense AI থেকে কৃষি বিষয়ক তথ্য পান",
+        newsletterHeading: "Green Leaf AI থেকে কৃষি বিষয়ক তথ্য পান",
         emailPlaceholder: "আপনার ইমেইল দিন",
         subscribe: "সাবস্ক্রাইব করুন",
         agreeTerms: "শর্তাবলীর সাথে সম্মত",
         services: "সেবাসমূহ",
         resources: "রিসোর্স",
         company: "কোম্পানি",
-        copyright: "© ২০২৬ AgriSense AI। সর্বস্বত্ব সংরক্ষিত।",
+        copyright: "© ২০২৬ Green Leaf AI। সর্বস্বত্ব সংরক্ষিত।",
       },
       carousel: {
         previous: "পূর্ববর্তী",
@@ -638,11 +644,11 @@ export const translations = {
     },
     services: {
       title: "সেবাসমূহ",
-      heading: "AgriSense AI আসলে যা যা করে",
+      heading: "Green Leaf AI আসলে যা যা করে",
     },
     blog: {
       title: "ব্লগ",
-      heading: "AgriSense কীভাবে তৈরি — কিছু নোট",
+      heading: "Green Leaf কীভাবে তৈরি — কিছু নোট",
       docsHeading: "বিস্তারিত ডকুমেন্টেশন",
       docsIntro:
         "বিস্তারিত লেখাগুলো এখানে আর্টিকেল হিসেবে নয়, রিপোজিটরিতেই রাখা — যাতে কোডের সাথে মিল থাকে:",
@@ -654,7 +660,7 @@ export const translations = {
     contact: {
       title: "যোগাযোগ করুন",
       eyebrow: "যোগাযোগ",
-      heading: "AgriSense-এর পেছনের দলের সাথে কথা বলুন",
+      heading: "Green Leaf-এর পেছনের দলের সাথে কথা বলুন",
       fastestHeading: "দ্রুততম উত্তর এজেন্ট নিজেই",
       fastestText:
         "ফসল, পরিকল্পনা বা রোগ নির্ণয় সংক্রান্ত যেকোনো বিষয়ে ক্রপ ডক্টর সঙ্গে সঙ্গেই উত্তর দেবে — উত্তরের অপেক্ষা করতে হবে না।",

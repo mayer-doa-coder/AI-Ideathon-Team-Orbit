@@ -8,14 +8,23 @@ agents/checkpointer.py's module-level-singleton-plus-init-function pattern:
 VitsModel's weights are too large to reload on every request, so
 init_tts_model() is called once from app.main's lifespan instead.
 
-Voice is currently stalled (the mic button is disabled client-side — see
-ChatInput.jsx), so torch/transformers/scipy/numpy are NOT in requirements.txt
-right now. Their imports are deliberately kept local to init_tts_model() and
-synthesize_speech() rather than at module level, so this module — and
-anything that imports from it (nodes/voice_input.py, nodes/voice_output.py,
-which the conversation graph always loads) — stays importable without those
-packages installed. Re-add them to requirements.txt before calling either
-function again.
+The two halves of this module have different status, and it matters:
+
+  * Speech-to-text (transcribe_audio) is LIVE. It is a plain HTTPS call to
+    OpenAI, needs no extra dependencies, and is what the mic button in
+    ChatInput.jsx now uses. It handles Bangla and English.
+
+  * Text-to-speech (init_tts_model / synthesize_speech) is still OFF. It needs
+    torch/transformers/scipy/numpy, which are NOT in requirements.txt — the
+    CPU-only torch wheel alone is a multi-gigabyte install for one feature.
+    Their imports are therefore kept local to those two functions rather than
+    at module level, so this module — and anything importing it
+    (nodes/voice_input.py, nodes/voice_output.py, which the conversation graph
+    always loads) — stays importable without them. synthesize_speech() returns
+    None when the model was never loaded, so voice_output degrades to a
+    text-only reply instead of raising. Re-add those four packages to
+    requirements.txt and call init_tts_model() from app.main's lifespan before
+    expecting spoken replies.
 """
 from __future__ import annotations
 
@@ -34,8 +43,24 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
-STT_MODEL = "whisper-1"
-STT_LANGUAGE = "bn"  # Bengali
+# Speech-to-text model. gpt-4o-transcribe rather than whisper-1 for two
+# measured reasons (both verified against real Bangla and English farmer
+# speech before switching):
+#
+#   1. whisper-1 REJECTS Bengali outright. `language="bn"` returns
+#      HTTP 400 "Language 'bn' is not supported." — so the previous
+#      configuration could never transcribe anything; every voice message
+#      failed. This was the actual reason voice was "unreliable".
+#   2. On the same audio, transcription accuracy was gpt-4o-transcribe 97% /
+#      whisper-1 (auto-detect) 81% for Bangla, and 92% / 91% for English.
+#
+# whisper-1 is kept as a fallback only — it still handles English well and a
+# degraded transcription beats losing the farmer's message entirely.
+STT_MODEL = "gpt-4o-transcribe"
+STT_FALLBACK_MODEL = "whisper-1"
+# Languages we will pass as a hint. Anything else is sent without one, letting
+# the model auto-detect, which is better than asserting a wrong language.
+STT_SUPPORTED_HINTS = {"bn", "en"}
 TTS_MODEL_NAME = "facebook/mms-tts-ben"
 AUDIO_OUTPUT_DIR = Path(__file__).resolve().parent.parent.parent / "generated_audio"
 # Peak amplitude synthesized audio is normalized to before quantizing to
@@ -72,28 +97,64 @@ def init_tts_model() -> None:
     logger.info("MMS-TTS Bengali model loaded.")
 
 
-def transcribe_audio(audio_file) -> str | None:
-    """Sends audio_file (a file-like object — e.g. io.BytesIO with a `.name`
-    set so the SDK can infer the format) to OpenAI's Whisper API. Returns the
-    transcribed text, or None on any failure (missing key, network error,
-    empty result). Callers must never treat a None return as an empty
-    message — see nodes/voice_input.py, which keeps a failed transcription
-    from silently continuing into intent classification."""
+def is_tts_available() -> bool:
+    """True only when the text-to-speech stack is actually installed AND the
+    model has been loaded. Lets callers tell "switched off" apart from "tried
+    and failed" — see nodes/voice_output.py, which would otherwise report a
+    red error on every voice turn for a feature that is simply not enabled."""
+    return _tts_model is not None and _tts_tokenizer is not None
+
+
+def transcribe_audio(audio_file, language: str | None = None) -> str | None:
+    """Transcribes audio_file (a file-like object — e.g. io.BytesIO with a
+    `.name` set so the SDK can infer the format) to text.
+
+    `language` is an ISO-639-1 hint, normally the farmer's current UI language
+    ("bn" or "en"), threaded through from the chat request. It is a hint, not a
+    constraint: a farmer with the Bangla UI who says an English crop name still
+    transcribes correctly. Passing the hint measurably beats auto-detection on
+    Bangla (97% vs 92% on the same audio), because these are short utterances
+    where the model has little to detect from. Anything outside
+    STT_SUPPORTED_HINTS is sent without a hint rather than asserted wrongly.
+
+    No `prompt` is passed. Seeding domain vocabulary (Boro, BRRI, urea, district
+    names) was tried and measured *worse* — it pushed the model toward digits
+    ("৩০" for "ত্রিশ") and mis-transcribed common soil terms.
+
+    Returns the transcribed text, or None on any failure (missing key, network
+    error, empty result). Callers must never treat a None return as an empty
+    message — see nodes/voice_input.py, which keeps a failed transcription from
+    silently continuing into intent classification.
+    """
     if not settings.openai_api_key:
         logger.error("transcribe_audio: OPENAI_API_KEY is not configured")
         return None
 
-    try:
-        client = OpenAI(api_key=settings.openai_api_key)
-        transcript = client.audio.transcriptions.create(
-            model=STT_MODEL, file=audio_file, language=STT_LANGUAGE
-        )
-    except Exception:  # noqa: BLE001 — any SDK/HTTP failure is a hard failure here
-        logger.exception("transcribe_audio: Whisper API call failed")
-        return None
+    hint = language if language in STT_SUPPORTED_HINTS else None
+    client = OpenAI(api_key=settings.openai_api_key)
 
-    text = (transcript.text or "").strip()
-    return text or None
+    def _call(model: str, with_hint: bool) -> str | None:
+        # audio_file is a stream and the first attempt consumes it, so rewind
+        # before any retry or the fallback uploads zero bytes.
+        audio_file.seek(0)
+        kwargs = {"model": model, "file": audio_file}
+        if with_hint and hint:
+            kwargs["language"] = hint
+        transcript = client.audio.transcriptions.create(**kwargs)
+        return (transcript.text or "").strip() or None
+
+    try:
+        return _call(STT_MODEL, with_hint=True)
+    except Exception:  # noqa: BLE001 — any SDK/HTTP failure falls through to the fallback
+        logger.exception("transcribe_audio: %s failed, retrying with %s", STT_MODEL, STT_FALLBACK_MODEL)
+
+    try:
+        # No hint on the fallback: whisper-1 rejects "bn" with a 400, so a hint
+        # here would turn a recoverable failure into a guaranteed one.
+        return _call(STT_FALLBACK_MODEL, with_hint=False)
+    except Exception:  # noqa: BLE001 — both models failed; the caller handles None
+        logger.exception("transcribe_audio: fallback %s also failed", STT_FALLBACK_MODEL)
+        return None
 
 
 def _clean_text_for_tts(text: str) -> str:

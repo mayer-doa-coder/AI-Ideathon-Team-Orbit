@@ -1,4 +1,4 @@
-# AgriSense AI — Architecture Reference
+# Green Leaf AI — Architecture Reference
 
 Consolidated build spec: system architecture, folder structure, LangGraph pipeline, nodes, and how the whole thing runs end to end. Stack: FastAPI + React (already built), LangChain, LangGraph, pgvector, Postgres, OpenAI API.
 

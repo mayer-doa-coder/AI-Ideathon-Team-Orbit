@@ -1,8 +1,8 @@
-# AgriSense AI
+# Green Leaf AI
 
 An autonomous agricultural advisor for smallholder farmers in Bangladesh. It holds a conversation to learn a farm's specifics, calls real external services (weather, a knowledge base, market prices, disease identification) rather than inventing numbers, produces a costed and dated season plan, explains every recommendation in terms of the real data behind it, and keeps watching the forecast after the plan is made — proactively adjusting it when real weather threatens to waste an input.
 
-Built for the IUT 12th ICT Fest — Bdapps Agentic AI Hackathon (Final Round), problem statement "AgriSense AI."
+Built for the IUT 12th ICT Fest — Bdapps Agentic AI Hackathon (Final Round), problem statement "Green Leaf AI."
 
 **Live demo (frontend):** https://agrisense-frontend-4tkz.onrender.com
 
@@ -30,7 +30,7 @@ New to the project? [`PROJECT_OVERVIEW.md`](PROJECT_OVERVIEW.md) explains the wh
 
 A farmer preparing for a new season has to make a chain of decisions — which crop, when to sow, how much fertilizer and water to budget, what pests to expect, whether the numbers leave any profit — using information that is real but scattered across weather services, soil guidelines, fertilizer charts, extension manuals, and market price boards, in formats that assume a specialist reader.
 
-AgriSense AI is built as two cooperating agents rather than a single chatbot:
+Green Leaf AI is built as two cooperating agents rather than a single chatbot:
 
 - **The conversation agent** runs once per chat message (also reachable over SMS and USSD, not just the web). It gathers what is missing about the farm through targeted follow-up questions, retrieves grounded agronomic material and a real weather forecast, ranks candidate crops, produces a dated season plan, computes an itemized cost and profit projection, and answers open-ended farming questions — deciding for itself which of several tools a question actually needs.
 - **The monitor agent** runs independently on a scheduled interval, in the background, for every farm with a committed plan. It re-checks the real forecast against the plan's pending fertilizer applications and upcoming pest/disease risk windows, and — deterministically, not by LLM guess — delays an application or flags a risk when the numbers say it should, then recomputes the financial impact and writes an alert.
@@ -212,7 +212,7 @@ See [`TIER_1_FEATURES.md`](TIER_1_FEATURES.md) for a plain-language explanation 
 ## Project structure
 
 ```
-AgriSense-AI/
+Green Leaf-AI/
 ├── backend/
 │   ├── app/
 │   │   ├── main.py                    FastAPI app, CORS, router registration, scheduler lifespan

@@ -35,7 +35,7 @@ export default function Preloader() {
     >
       <div className="preloader-content">
         <img src="/assets/img/leaf.png" alt="" className="farmer-loader" />
-        <h4>Loading AgriSense...</h4>
+        <h4>Loading Green Leaf...</h4>
       </div>
     </div>
   );

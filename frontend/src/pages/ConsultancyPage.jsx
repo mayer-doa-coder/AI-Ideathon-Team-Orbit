@@ -78,7 +78,7 @@ export default function ConsultancyPage() {
           <h1>Expert Crop Consultancy</h1>
           <p className="consultancy-subtitle">
             Get personalised guidance from agronomists, plant pathologists and soil specialists —
-            a premium service unlocked by your AgriSense payment.
+            a premium service unlocked by your Green Leaf payment.
           </p>
         </header>
 
@@ -178,7 +178,7 @@ function LockedState({ experts }) {
         <h2>Unlock Expert Consultancy</h2>
         <p>
           One-to-one advice from crop experts is a premium feature. Complete a payment through
-          AgriSense Premium to start asking questions and get tailored guidance.
+          Green Leaf Premium to start asking questions and get tailored guidance.
         </p>
         <Link to="/payment" className="consultancy-unlock-btn">
           Unlock with Premium

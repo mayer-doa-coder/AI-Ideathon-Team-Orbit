@@ -48,7 +48,7 @@ export default function LoginPage() {
       <div className="auth-card">
         <div className="auth-brand">
           <span className="auth-brand-mark">
-            <i className="fa-solid fa-leaf" />
+            <img src="/assets/img/logo-mark.png" alt="" />
           </span>
           {t("loginPage.brand")}
         </div>

@@ -5,6 +5,7 @@ import SiteFooter from "../home/SiteFooter";
 import Preloader from "../template/Preloader";
 import { BackToTop, MouseCursor, Offcanvas, SearchPopup } from "../template/TemplateChrome";
 import { bootAgrivaTemplate } from "../../utils/agrivaTemplate";
+import "../../styles/marketing.css";
 
 /**
  * The Agriva page shell shared by every marketing route.

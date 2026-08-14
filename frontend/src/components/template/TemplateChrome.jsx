@@ -45,7 +45,7 @@ export function Offcanvas() {
               <div className="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
                 <div className="offcanvas__logo">
                   <Link to="/">
-                    <img src="/assets/img/logo/theme-logo.svg" alt="AgriSense AI" />
+                    <img src="/assets/img/logo-mark.png" alt="Green Leaf AI" />
                   </Link>
                 </div>
                 <div className="offcanvas__close">
@@ -126,7 +126,7 @@ export function SearchPopup() {
                 <div className="search_top d-flex align-items-center">
                   <div className="search_logo">
                     <Link to="/">
-                      <img src="/assets/img/logo/white-logo.svg" alt="AgriSense AI" />
+                      <img src="/assets/img/logo-mark.png" alt="Green Leaf AI" />
                     </Link>
                   </div>
                   <div className="search_close">

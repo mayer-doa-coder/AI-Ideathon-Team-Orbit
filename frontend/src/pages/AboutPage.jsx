@@ -8,7 +8,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { useHomeContent } from "../data/useHomeContent";
 
 /**
- * /about — the problem AgriSense exists to solve, the two-agent architecture,
+ * /about — the problem Green Leaf exists to solve, the two-agent architecture,
  * and an explicit list of what is and is not built.
  *
  * The "what is not built" table is deliberate, not an oversight: PROJECT_OVERVIEW.md

@@ -1,6 +1,6 @@
 # Image credits
 
-Photographs on the AgriSense AI home page come from Wikimedia Commons and
+Photographs on the Green Leaf AI home page come from Wikimedia Commons and
 replace the Agriva template's placeholder graphics. Each entry lists the
 licence it is used under and its author; CC BY and CC BY-SA require this
 attribution to be kept.

@@ -54,7 +54,7 @@ export default function SiteFooter() {
         <div className="footer-top-item">
           <div className="footer-logo wow fadeInUp" data-wow-delay=".2s">
             <Link to="/">
-              <img src="/assets/img/logo/white-logo.svg" alt="AgriSense AI" />
+              <img src="/assets/img/logo-mark.png" alt="Green Leaf AI" />
             </Link>
           </div>
           <div className="footer-right-item">

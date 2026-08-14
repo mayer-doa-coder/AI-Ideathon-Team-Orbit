@@ -53,14 +53,30 @@ def test_slot_fill_with_missing_fields_asks_followup():
     assert supervisor_router(state) == "ask_followup"
 
 
-def test_slot_fill_without_weather_calls_weather_tool():
+def test_slot_fill_without_weather_but_with_candidates_calls_weather_tool():
+    # Candidates already exist, so only the forecast is missing — the
+    # standalone weather node handles that and re-enters the router. No
+    # retrieval or re-ranking is needed, so this must NOT fan out.
     state = _state(intent="slot_fill", weather_data=None)
     assert supervisor_router(state) == "weather_tool"
 
 
-def test_slot_fill_without_crop_candidates_calls_crop_recommendation():
+def test_slot_fill_without_crop_candidates_fans_out_to_gather_context():
+    # Crop candidates need both a forecast and retrieved agronomy, which are
+    # independent — the router sends this to the fan-out so weather_parallel
+    # and knowledge_retrieval run concurrently and join at
+    # crop_recommendation. crop_recommendation is deliberately unreachable
+    # from the router now; entering it directly would rank crops against an
+    # empty knowledge context. See nodes/gather_context.py.
     state = _state(intent="slot_fill", crop_candidates=[])
-    assert supervisor_router(state) == "crop_recommendation"
+    assert supervisor_router(state) == "gather_context"
+
+
+def test_slot_fill_missing_both_weather_and_candidates_fans_out_once():
+    # The pre-parallel graph took two router passes here (weather_tool, then
+    # crop_recommendation). One fan-out now covers both.
+    state = _state(intent="slot_fill", weather_data=None, crop_candidates=[])
+    assert supervisor_router(state) == "gather_context"
 
 
 def test_slot_fill_with_selected_crop_calls_season_planner():

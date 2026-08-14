@@ -28,7 +28,7 @@ EMBEDDING_BATCH_SIZE = 100
 
 DEFAULT_SOURCE = (
     Path(__file__).resolve().parent.parent.parent
-    / "datasets-AgriSense AI"
+    / "datasets-Green Leaf AI"
     / "SoilFertilityAtlas2020_Curated.pdf"
 )
 DEFAULT_TITLE = "Soil Fertility Atlas Bangladesh 2020 (SRDI)"

@@ -1,4 +1,4 @@
-# AgriSense AI — Hackathon Playbook
+# Green Leaf AI — Hackathon Playbook
 ### bdapps Agentic AI Hackathon (powered by Codex) · IUT 12th ICT Fest · Final Round
 
 ---
@@ -411,7 +411,7 @@ they'll notice if that's fudged.
 
 ## Phase 9 (Hour 23–24): Final commit & submission
 
-- Repo name: `TeamName_AgriSense` (per the rules).
+- Repo name: `TeamName_Green Leaf` (per the rules).
 - Final commit must be pushed **before** the hard cutoff — commits after don't count.
 - Do one last read of the "What Not to Do" section of the problem PDF as a team, out loud, before you submit.
 - Sleep/shift tip: with 3 people over 24 hours, stagger 2-hour rest blocks starting around hour 14–16 rather than everyone crashing at once near the end — you want at least one alert person during Phase 8's audit.

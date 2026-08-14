@@ -205,6 +205,10 @@ class AgentState(TypedDict):
     # the request payload. Its presence (not `intent`) is what routes a turn
     # to voice_input; see router.intake_router.
     uploaded_audio: str | None
+    # The farmer's current UI language ("bn" | "en"), set fresh each turn by
+    # chat.py from the request payload. Consumed only by voice_input, as the
+    # speech-to-text language hint — see tools/voice.transcribe_audio.
+    ui_language: str | None
     voice_input: VoiceInput
     voice_output: VoiceOutput
     # True right after `core_change_handler` has asked "want a whole new
@@ -256,6 +260,7 @@ def new_state(farmer_id: str) -> AgentState:
         uploaded_image=None,
         disease_result=None,
         uploaded_audio=None,
+        ui_language=None,
         voice_input={"used": False, "transcribed_text": None, "stt_error": None},
         voice_output={"requested": False, "audio_path": None, "tts_error": None},
         pending_replan_confirmation=False,

@@ -22,7 +22,7 @@ import io
 from langchain_core.messages import AIMessage, HumanMessage
 
 from app.agents.state import AgentState
-from app.tools.voice import STT_LANGUAGE, STT_MODEL, transcribe_audio
+from app.tools.voice import STT_MODEL, transcribe_audio
 
 TRANSCRIPTION_FAILED_MESSAGE = (
     "Sorry, I couldn't understand that voice message. Could you try again, or type your message instead?"
@@ -34,6 +34,10 @@ def voice_input(state: AgentState) -> dict:
     if not audio_base64:
         return {}
 
+    # The farmer's UI language, used only as a speech-to-text hint. None is
+    # fine — transcribe_audio falls back to auto-detection.
+    language = state.get("ui_language")
+
     trace: list[dict] = []
 
     try:
@@ -44,7 +48,7 @@ def voice_input(state: AgentState) -> dict:
                 "type": "voice_input",
                 "tool": "transcribe_audio",
                 "paramsDisplay": "audio=<uploaded voice message>",
-                "params": {"model": STT_MODEL, "language": STT_LANGUAGE},
+                "params": {"model": STT_MODEL, "language": language},
                 "response": {"error": f"invalid base64 audio data: {exc}"},
                 "summary": "could not decode uploaded audio",
             }
@@ -63,14 +67,14 @@ def voice_input(state: AgentState) -> dict:
     audio_file = io.BytesIO(audio_bytes)
     audio_file.name = "voice_message.wav"
 
-    text = transcribe_audio(audio_file)
+    text = transcribe_audio(audio_file, language=language)
 
     trace.append(
         {
             "type": "voice_input",
             "tool": "transcribe_audio",
-            "paramsDisplay": f"audio=<uploaded voice message>, model={STT_MODEL}, language={STT_LANGUAGE}",
-            "params": {"model": STT_MODEL, "language": STT_LANGUAGE},
+            "paramsDisplay": f"audio=<uploaded voice message>, model={STT_MODEL}, language={language or 'auto'}",
+            "params": {"model": STT_MODEL, "language": language or "auto"},
             "response": {"text": text} if text else {"error": "Whisper transcription failed"},
             "summary": f'transcribed: "{text}"' if text else "Whisper transcription failed — no text recognized",
         }

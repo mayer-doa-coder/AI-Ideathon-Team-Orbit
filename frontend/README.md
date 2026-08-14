@@ -1,6 +1,6 @@
-# AgriSense AI — Frontend
+# Green Leaf AI — Frontend
 
-React + Vite frontend for AgriSense AI, styled to match the "Agriva" design reference in `../Main files/` (colors, fonts, button/input conventions extracted into `src/index.css`).
+React + Vite frontend for Green Leaf AI, styled to match the "Agriva" design reference in `../Main files/` (colors, fonts, button/input conventions extracted into `src/index.css`).
 
 ## Pages
 

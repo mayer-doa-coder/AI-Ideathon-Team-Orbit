@@ -13,6 +13,6 @@ export const onboardingSteps = [
 ];
 
 export const greeting =
-  "Hi, I'm your AgriSense AI planning assistant. Tell me about your farm — location, " +
+  "Hi, I'm your Green Leaf AI planning assistant. Tell me about your farm — location, " +
   "acreage, soil type, water availability, budget, and the season you're planning for — " +
   "and I'll check the weather and knowledge base to build you a season plan.";
