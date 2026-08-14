@@ -1,35 +1,45 @@
-:root {
-  --white: #fff;
-  --theme: #c8433a;
-  --theme2: #f5d83e;
-  --theme3: #11a21b;
-  --header: #2f2f2f;
-  --text: #50624a;
-  --border: rgba(47, 47, 47, 0.1);
-  --bg: #f5f6f4;
-  --bg2: #50624a;
-  --box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.13);
+/*
+ * App-level overrides layered on top of the Agriva template.
+ *
+ * IMPORTANT: this file is imported from main.jsx, so Vite injects it AFTER the
+ * <link> tags in index.html — it wins over assets/css/main.css at equal
+ * specificity. Everything here is therefore deliberate; adding a broad rule
+ * (a bare `body`, `h2`, `.container`, ...) will silently restyle the whole
+ * template. Keep additions narrow.
+ *
+ * The colour palette that used to live here (--theme, --header, --text, --bg,
+ * ...) has been removed: main.css's own :root already declares every one of
+ * them with identical values, so the copy was pure duplication and a second
+ * place to keep in sync.
+ */
 
-  /* Noto Sans Bengali only ever renders for Bengali-script characters —
-     browsers fall back to it per-glyph, so Latin text still uses
-     Instrument Sans/Inter exactly as before; this just keeps Bangla text
-     (see context/LanguageContext.jsx) from rendering as tofu boxes. */
+:root {
+  /* Not in main.css — the template's borders are near-black (#02060A), which
+     is far too heavy for the app's cards and chat surfaces. The app's 46
+     var(--border) usages all assume this translucent value. The only template
+     rule this changes is the offcanvas social-icon ring; the other six
+     var(--border) rules in main.css belong to the shop pages, which this app
+     does not use. */
+  --border: rgba(47, 47, 47, 0.1);
+
+  /* Consumed by the app's own stylesheets (chat, dashboard, auth, ...). The
+     Bengali face is appended as a fallback rather than set as the primary:
+     browsers resolve fallbacks per-glyph, so Latin text still renders in
+     Instrument Sans / Inter and only Bangla codepoints reach Noto. */
   --heading-font: "Instrument Sans", "Noto Sans Bengali", sans-serif;
   --body-font: "Inter", "Noto Sans Bengali", sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-}
-
+/*
+ * Re-declare the template's own two font stacks with the Bengali fallback
+ * appended. main.css sets `font-family` directly on body and on h1–h6, so a
+ * :root variable alone would never reach them and every Bangla string on the
+ * marketing page would render as tofu boxes. The families are otherwise
+ * character-for-character what main.css:47 and main.css:90 already specify,
+ * so Latin rendering is unchanged.
+ */
 body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--body-font);
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--text);
-  background-color: var(--bg);
+  font-family: "Inter", "Noto Sans Bengali", sans-serif;
 }
 
 h1,
@@ -38,18 +48,111 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--heading-font);
-  margin: 0;
-  color: var(--header);
+  font-family: "Instrument Sans", "Noto Sans Bengali", sans-serif;
 }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
+/*
+ * Undo the template's global title-casing inside the application pages.
+ *
+ * main.css:220 and :226 set `text-transform: capitalize` on every <p> and
+ * <span>, and h1–h6 get the same treatment. That is a deliberate look for the
+ * marketing page, but these pages render real content — farmer messages, LLM
+ * answers, market figures, agent trace output — where it is actively wrong:
+ * "the crop shows early blight" would display as "The Crop Shows Early
+ * Blight". Scoped to each app page's root class so the home page keeps the
+ * template's styling untouched.
+ */
+.dashboard-page,
+.dashboard-page p,
+.dashboard-page span,
+.dashboard-page h1,
+.dashboard-page h2,
+.dashboard-page h3,
+.dashboard-page h4,
+.dashboard-page h5,
+.dashboard-page h6,
+.rag-test-page,
+.rag-test-page p,
+.rag-test-page span,
+.rag-test-page h1,
+.rag-test-page h2,
+.rag-test-page h3,
+.rag-test-page h4,
+.rag-test-page h5,
+.rag-test-page h6,
+.consultancy-page,
+.consultancy-page p,
+.consultancy-page span,
+.consultancy-page h1,
+.consultancy-page h2,
+.consultancy-page h3,
+.consultancy-page h4,
+.consultancy-page h5,
+.consultancy-page h6,
+.auth-page,
+.auth-page p,
+.auth-page span,
+.auth-page h1,
+.auth-page h2,
+.auth-page h3,
+.auth-page h4,
+.auth-page h5,
+.auth-page h6,
+.payment-page,
+.payment-page p,
+.payment-page span,
+.payment-page h1,
+.payment-page h2,
+.payment-page h3,
+.payment-page h4,
+.payment-page h5,
+.payment-page h6 {
+  text-transform: none;
 }
 
+/*
+ * Hide five decorative slots the template fills with transparent cut-out PNGs.
+ *
+ * The Agriva pack ships these as placeholder graphics (grey rectangles with
+ * their pixel dimensions printed on them), and unlike the photographic slots
+ * they cannot simply be swapped for a photo: each is an absolutely-positioned
+ * cut-out — a maize plant, a tractor, a person standing behind the testimonial
+ * cards — that only reads correctly with a transparent background. A
+ * rectangular photograph in these positions looks broken, so they are hidden
+ * rather than filled. Every one is ornamental; nothing here carries content.
+ *
+ * To restore them, drop a genuine transparent-background PNG at the path in
+ * the comment and delete the matching rule.
+ */
+.feature-box-item-2 .maize-shape,      /* home-2/maize-5.png  */
+.faq-section-2 .faq-shape,             /* home-2/maize-6.png  */
+.about-wrapper-2 .trac-wrap,           /* home-2/tractor.png  */
+.testimonial-section-2 .client-man,    /* home-2/client.png   */
+.service-section-2 .mask-image {       /* home-2/service/image.png */
+  display: none;
+}
+
+/*
+ * Constrain the data-source card avatars.
+ *
+ * main.css:13254 gives .client-image no dimensions at all — the template did
+ * not need any, because the PNGs it shipped were already small square
+ * portraits. The photographs replacing them are full-width landscape, so
+ * without this they render at their natural size and burst out of the card.
+ */
+.testimonial-wrapper-2 .testimonial-card-item-2 .content .client-image img {
+  width: 84px;
+  height: 84px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+}
+
+button,
 input,
-textarea {
+textarea,
+select {
   font-family: inherit;
 }
 

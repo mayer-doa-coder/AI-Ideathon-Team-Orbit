@@ -1,0 +1,54 @@
+/*
+ * Inner-page breadcrumb header.
+ *
+ * Worth knowing before changing this: the template's own markup puts
+ * `text-white` on the breadcrumb <h1>, but that class is a no-op here — this
+ * pack's trimmed bootstrap.min.css defines it, and then main.css overrides it
+ * with
+ *
+ *     .breadcrumb-wrapper .page-heading h1 { color: var(--header) !important }
+ *
+ * So Agriva's breadcrumb heading is deliberately DARK, and the design assumes
+ * a light background image behind it. Do not "fix" the heading to white —
+ * you would be fighting an !important rule for no reason.
+ *
+ * What that design does not survive is a photograph with a bright sky exactly
+ * where the heading sits. So instead of darkening the image and inverting the
+ * text, this lightens it: a soft white veil, strongest in the middle where the
+ * title and crumbs are, keeping the dark heading legible over any photo while
+ * staying in the template's intended light-header look.
+ */
+
+/*
+ * The veil has to serve two elements with opposite needs, stacked vertically:
+ * the site header sits over the top of this block and its nav and logo are
+ * WHITE, while the breadcrumb heading below is DARK. So the gradient darkens
+ * the top band and lightens the middle, rather than doing one or the other.
+ */
+.breadcrumb-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(24, 36, 28, 0.5) 0%,
+    rgba(24, 36, 28, 0.18) 18%,
+    rgba(245, 246, 244, 0.62) 38%,
+    rgba(245, 246, 244, 0.8) 62%,
+    rgba(245, 246, 244, 0.6) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.breadcrumb-wrapper .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* The crumb trail sits on the same veil; give it a solid chip so it reads as
+   a control rather than floating text. */
+.breadcrumb-wrapper .breadcrumb-items {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(2px);
+}

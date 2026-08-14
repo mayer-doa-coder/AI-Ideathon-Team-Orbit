@@ -1,18 +1,28 @@
 # Python
-backend/venv/
-backend/.venv/
+venv/
+.venv/
 __pycache__/
 *.pyc
+.pytest_cache/
 
 # Env files
 .env
-backend/.env
-frontend/.env
+.env.*
+!.env.example
 
 # Node
-frontend/node_modules/
-frontend/build/
-frontend/dist/
+node_modules/
+build/
+dist/
+
+# npm run from the wrong directory leaves an empty stub lockfile behind.
+# Only the frontend is a Node project, so its lockfile is the only one that
+# should ever be tracked.
+/package-lock.json
+backend/package-lock.json
+
+# Generated at runtime by app/tools/voice.py's synthesize_speech()
+backend/generated_audio/
 
 # OS / editor
 .DS_Store

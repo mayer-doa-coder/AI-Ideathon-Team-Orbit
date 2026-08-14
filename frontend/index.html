@@ -2,19 +2,75 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="AgriSense AI — an agentic crop advisor for Bangladeshi farmers" />
+    <link rel="shortcut icon" href="/assets/img/favicon.svg" />
+
+    <!--
+      Agriva template stylesheet chain. The order below is copied verbatim from
+      Main files/agriva/index.html and matters: main.css overrides bootstrap,
+      and color.css (loaded last) overrides main.css. Changing the order
+      silently breaks the theme.
+    -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/assets/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/css/animate.css" />
+    <link rel="stylesheet" href="/assets/css/magnific-popup.css" />
+    <link rel="stylesheet" href="/assets/css/meanmenu.css" />
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/assets/css/nice-select.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--
+      main.css @imports Instrument Sans + Inter itself; they are repeated here
+      only so the fetch starts during head parse rather than after main.css
+      downloads. Noto Sans Bengali is ours, not the template's — the Bengali
+      UI copy (see src/i18n/translations.js) renders as tofu without it.
+    -->
     <link
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+Bengali:wght@400..700&display=swap"
       rel="stylesheet"
     />
-    <title>AgriSense AI — Crop Doctor Chat</title>
+
+    <title>AgriSense AI — Crop Doctor for Bangladeshi Farmers</title>
   </head>
-  <body>
+
+  <body class="bg-white">
     <div id="root"></div>
+
+    <!--
+      Template vendor plugins. These are classic (non-module) scripts, so they
+      execute during parse — before /src/main.jsx, which is a module and is
+      therefore deferred. That ordering is what guarantees window.jQuery,
+      window.gsap, Swiper and WOW already exist by the time React mounts.
+
+      assets/js/main.js is deliberately NOT loaded here. It is an IIFE bound to
+      $(document).ready(), so loading it now would run it against an empty
+      #root. src/utils/agrivaTemplate.js injects it after React has painted the
+      markup it expects — see the notes there.
+    -->
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
+    <script src="/assets/js/viewport.jquery.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/gsap.min.js"></script>
+    <script src="/assets/js/ScrollTrigger.min.js"></script>
+    <script src="/assets/js/ScrollSmoother.min.js"></script>
+    <script src="/assets/js/ScrollToPlugin.min.js"></script>
+    <script src="/assets/js/SplitText.min.js"></script>
+    <script src="/assets/js/TextPlugin.js"></script>
+    <script src="/assets/js/chroma.min.js"></script>
+    <script src="/assets/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/js/jquery.waypoints.js"></script>
+    <script src="/assets/js/jquery.counterup.min.js"></script>
+    <script src="/assets/js/swiper-bundle.min.js"></script>
+    <script src="/assets/js/jquery.meanmenu.min.js"></script>
+    <script src="/assets/js/parallaxie.js"></script>
+    <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/js/wow.min.js"></script>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

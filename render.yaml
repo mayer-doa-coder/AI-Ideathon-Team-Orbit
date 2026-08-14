@@ -51,6 +51,19 @@ services:
         value: https://developer.bdapps.com
       - key: BDAPPS_API_VERSION
         value: "1.0"
+      # Kindwise crop.health — app/tools/crop_health.py. Defaults to "" in
+      # core/config.py, so leaving this unset degrades silently rather than
+      # failing the deploy.
+      - key: CROP_HEALTH_API_KEY
+        sync: false
+      # Web-search fallback for when the RAG knowledge base has no answer —
+      # app/tools/web_search.py. Optional.
+      - key: TAVILY_API_KEY
+        sync: false
+      # Static-outbound-IP proxy for BDApps' IP whitelist — see the note in
+      # backend/.env.example. Leave blank to call BDApps directly.
+      - key: FIXIE_URL
+        sync: false
 
   - type: web
     name: agrisense-frontend

@@ -1,0 +1,250 @@
+/*
+ * "How it works" process section.
+ *
+ * Not part of the Agriva template — this section is ours, so it is styled here
+ * rather than in main.css. Everything is drawn from the template's own palette
+ * (--theme, --theme2, --theme3, --header, --text, --bg, declared in
+ * assets/css/main.css) so it reads as part of the same design system rather
+ * than a bolt-on.
+ *
+ * Palette roles in this section:
+ *   --theme3 (green)  the agent doing work — the seven forward steps
+ *   --theme2 (yellow) the monitor agent — the loop that runs afterwards
+ *   --theme  (red)    reserved for nothing here; kept out so the two agent
+ *                     colours stay unambiguous
+ */
+
+.agri-flow-section {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* Faint grid, masked to fade out at the edges — gives the section depth
+   without competing with the cards. */
+.agri-flow-section .agri-flow-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(47, 47, 47, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47, 47, 47, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 40%, transparent 100%);
+  pointer-events: none;
+}
+
+.agri-flow-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- the rail ---------------------------------------------------- */
+
+.agri-flow-timeline {
+  position: relative;
+  margin-top: 60px;
+  padding-left: 92px;
+}
+
+/* The unfilled track. Sits behind .agri-flow-rail-fill, which grows with scroll. */
+.agri-flow-timeline .agri-flow-rail {
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 35px;
+  width: 2px;
+  background: rgba(47, 47, 47, 0.12);
+  border-radius: 2px;
+}
+
+.agri-flow-timeline .agri-flow-rail-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--theme3) 0%, var(--theme3) 72%, var(--theme2) 100%);
+  transform-origin: top center;
+}
+
+/* ---------- steps ------------------------------------------------------- */
+
+.agri-flow-step {
+  position: relative;
+  padding-bottom: 44px;
+}
+
+.agri-flow-step:last-child {
+  padding-bottom: 0;
+}
+
+.agri-flow-step .agri-flow-node {
+  position: absolute;
+  left: -92px;
+  top: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  border: 2px solid rgba(47, 47, 47, 0.12);
+  font-family: "Instrument Sans", "Noto Sans Bengali", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--header);
+  transition: border-color 0.45s ease, background-color 0.45s ease, color 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.agri-flow-step .agri-flow-node i {
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* .is-active is toggled per-step by the ScrollTrigger in ProcessSection.jsx. */
+.agri-flow-step.is-active .agri-flow-node {
+  background: var(--theme3);
+  border-color: var(--theme3);
+  color: var(--white);
+  box-shadow: 0 0 0 8px rgba(17, 162, 27, 0.12);
+}
+
+.agri-flow-step.is-loop.is-active .agri-flow-node {
+  background: var(--theme2);
+  border-color: var(--theme2);
+  color: var(--header);
+  box-shadow: 0 0 0 8px rgba(245, 216, 62, 0.22);
+}
+
+.agri-flow-step .agri-flow-card {
+  background: var(--white);
+  border: 1px solid rgba(47, 47, 47, 0.08);
+  border-radius: 16px;
+  padding: 28px 32px;
+  box-shadow: 0 1px 2px rgba(47, 47, 47, 0.04);
+  transition: transform 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
+}
+
+.agri-flow-step.is-active .agri-flow-card {
+  border-color: rgba(17, 162, 27, 0.28);
+  box-shadow: 0 18px 40px -24px rgba(47, 47, 47, 0.35);
+}
+
+.agri-flow-step.is-loop.is-active .agri-flow-card {
+  border-color: rgba(245, 216, 62, 0.55);
+}
+
+.agri-flow-step .agri-flow-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--header);
+  margin-bottom: 10px;
+}
+
+.agri-flow-step .agri-flow-card p {
+  color: var(--text);
+  margin-bottom: 0;
+  text-transform: none;
+}
+
+/* Small monospace tag naming the real tool or table behind each step — the
+   detail that makes the section specific to this product. Deliberately not
+   nested under .agri-flow-step: /services reuses this chip on its own service
+   cards, outside the timeline. */
+.agri-flow-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid rgba(47, 47, 47, 0.08);
+  font-family: "Cascadia Mono", Consolas, "SF Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  text-transform: none;
+}
+
+.agri-flow-meta i {
+  font-size: 11px;
+  color: var(--theme3);
+}
+
+.agri-flow-step.is-loop .agri-flow-meta i {
+  color: #9a8410;
+}
+
+/* ---------- the monitor-agent loop ------------------------------------- */
+
+.agri-flow-step.is-loop .agri-flow-card {
+  background: linear-gradient(180deg, rgba(245, 216, 62, 0.14) 0%, var(--white) 70%);
+  border-color: rgba(245, 216, 62, 0.4);
+}
+
+.agri-flow-loop-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed rgba(47, 47, 47, 0.15);
+  font-size: 14px;
+  font-weight: 600;
+  color: #7d6a0c;
+  text-transform: none;
+}
+
+.agri-flow-loop-note i {
+  animation: agri-flow-loop-spin 5s linear infinite;
+}
+
+@keyframes agri-flow-loop-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- responsive -------------------------------------------------- */
+
+@media (max-width: 767px) {
+  .agri-flow-timeline {
+    padding-left: 62px;
+  }
+  .agri-flow-timeline .agri-flow-rail {
+    left: 23px;
+  }
+  .agri-flow-step .agri-flow-node {
+    left: -62px;
+    width: 48px;
+    height: 48px;
+    font-size: 16px;
+  }
+  .agri-flow-step .agri-flow-node i {
+    font-size: 17px;
+  }
+  .agri-flow-step .agri-flow-card {
+    padding: 22px 20px;
+  }
+  .agri-flow-step .agri-flow-card h3 {
+    font-size: 19px;
+  }
+}
+
+/* Respect the OS setting: the rail still fills and steps still highlight (both
+   are scroll-position state, not motion for its own sake), but the entrance
+   animation and the spinning loop icon are dropped. */
+@media (prefers-reduced-motion: reduce) {
+  .agri-flow-loop-note i {
+    animation: none;
+  }
+  .agri-flow-step .agri-flow-card,
+  .agri-flow-step .agri-flow-node {
+    transition: none;
+  }
+}

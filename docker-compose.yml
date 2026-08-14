@@ -29,6 +29,20 @@ services:
       DATABASE_URL: postgresql://user:password@postgres:5432/agrisense
     ports:
       - "8000:8000"
+    volumes:
+      # synthesize_speech() writes .wav files here and app.main mounts the
+      # directory as StaticFiles, so it has to outlive the container.
+      - generated_audio:/app/generated_audio
+    # python:3.13-slim ships neither curl nor wget, so probe the root route
+    # (app.main's `/`) with the stdlib instead of adding a package for it.
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/')"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      # alembic upgrade head runs before uvicorn binds (docker-entrypoint.sh),
+      # so allow for migrations on a cold database before counting failures.
+      start_period: 60s
     depends_on:
       postgres:
         condition: service_healthy
@@ -39,11 +53,15 @@ services:
     container_name: agrisense-frontend
     restart: unless-stopped
     environment:
+      # Read by the browser, not the container, so this is the host-published
+      # port rather than the `backend` service name.
       VITE_API_URL: http://localhost:8000
     ports:
       - "5173:5173"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
 
 volumes:
   postgres_data:
+  generated_audio:
