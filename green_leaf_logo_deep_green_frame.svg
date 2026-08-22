@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <defs>
+    <linearGradient id="frameGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B5E2A"/>
+      <stop offset="100%" stop-color="#053B1D"/>
+    </linearGradient>
+
+    <linearGradient id="greenTextGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#9CD300"/>
+      <stop offset="48%" stop-color="#74B900"/>
+      <stop offset="100%" stop-color="#0B7A1E"/>
+    </linearGradient>
+
+    <linearGradient id="leafTextGrad" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0%" stop-color="#FFE600"/>
+      <stop offset="45%" stop-color="#FFD500"/>
+      <stop offset="100%" stop-color="#E9B600"/>
+    </linearGradient>
+
+    <linearGradient id="leafIconGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D7EE00"/>
+      <stop offset="45%" stop-color="#80C500"/>
+      <stop offset="100%" stop-color="#087A1E"/>
+    </linearGradient>
+
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#000000" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- White background -->
+  <rect width="1200" height="1200" fill="#ffffff"/>
+
+  <!-- Deep green open frame -->
+  <path d="M95 160 H755 V220 H155 V1090 H1010 V430 H1070 V1150 H95 Z"
+        fill="url(#frameGrad)"/>
+
+  <!-- GREEN -->
+  <text x="195" y="655"
+        font-family="Arial Black, Impact, sans-serif"
+        font-size="300"
+        font-weight="900"
+        letter-spacing="-10"
+        fill="url(#greenTextGrad)">GREEN</text>
+
+  <!-- soft curved green shade on GREEN -->
+  <path d="M205 525 C360 470 500 560 660 505 C780 463 865 462 965 505
+           L965 650 L205 650 Z"
+        fill="#087A1E" opacity="0.33"/>
+
+  <!-- LEAF -->
+  <text x="200" y="1025"
+        font-family="Arial Black, Impact, sans-serif"
+        font-size="300"
+        font-weight="900"
+        letter-spacing="-8"
+        fill="url(#leafTextGrad)"
+        filter="url(#softShadow)">LEAF</text>
+
+  <!-- yellow shadow/highlight band -->
+  <path d="M205 865 C370 765 535 885 700 815 C810 770 880 770 970 800
+           L970 1020 L205 1020 Z"
+        fill="#F0B900" opacity="0.28"/>
+
+  <!-- Leaf cluster top-right -->
+  <g transform="translate(775,65)" filter="url(#softShadow)">
+    <!-- small left leaf -->
+    <path d="M95 15
+             C38 55 18 132 82 200
+             C105 144 132 93 151 61
+             C139 38 120 20 95 15 Z"
+          fill="url(#leafIconGrad)"/>
+    <!-- white vein -->
+    <path d="M99 48 C75 92 70 140 85 174"
+          fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+
+    <!-- large right leaf -->
+    <path d="M225 40
+             C155 53 103 101 97 207
+             C161 222 223 196 267 148
+             C293 119 309 86 304 49
+             C276 40 251 37 225 40 Z"
+          fill="url(#leafIconGrad)"/>
+    <!-- white vein -->
+    <path d="M128 193 C183 173 235 131 281 79"
+          fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round"/>
+
+    <!-- lower leaf -->
+    <path d="M144 248
+             C214 246 275 216 314 168
+             C302 235 268 290 208 317
+             C174 309 151 284 144 248 Z"
+          fill="url(#leafIconGrad)"/>
+  </g>
+</svg>
